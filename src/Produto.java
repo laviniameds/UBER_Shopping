@@ -5,6 +5,15 @@ public class Produto {
 	private float preco;
 	private String unidade; //Exemplo: Unitário, 2 litros (refrigerante), 10kg (ração).
 	private int quantidade;
+	private String categoria;
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 
 	public String getNome() {
 		return nome;

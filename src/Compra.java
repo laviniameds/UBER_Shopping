@@ -1,18 +1,18 @@
 
 public class Compra {
-
+	
 	private double total;
 	private double tempo;
 	private String local; //Vamos ter que criar alguma funcao que compare localização dos bairros de Natal pra medir distância e usar pra calcular o tempo.
-	private Produto produtos[] = new Produto[10];
+	private Produto produtos[];
 	
-	public void setTamanho(int tamanho) { //Para definir tamanho da array de produtos da compra.
-		Produto aux[] = produtos;
+	public void setQtdProdutos(int qtd) { //Para definir tamanho da array de produtos da compra.
+		Produto aux[] = this.produtos;
 		
-		produtos = new Produto[tamanho];
+		this.produtos = new Produto[qtd];
 		if (aux != null) {
 			for (int i = 0; i < aux.length; i++) {
-				produtos[i] = aux[i];
+				this.produtos[i] = aux[i];
 			}
 		}
 	}

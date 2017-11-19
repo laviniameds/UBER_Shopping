@@ -17,5 +17,4 @@ public class Usuario {
 		this.localizacao = localizacao;
 	}
 	
-	
 }
