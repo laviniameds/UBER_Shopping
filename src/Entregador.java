@@ -2,14 +2,14 @@
 public class Entregador extends Usuario{
 	
 	private double avaliacao = 5;
-	private int cont_avaliacao = 1; //Quantas avaliações já teve, pra calcular a média após nova avaliação
-	private double tempo_servico;
+	private int contadorAvaliacao = 1; //Quantas avaliações já teve, pra calcular a média após nova avaliação
+	private double tempoServico;
 	private double comissao;
 		
 	public void setAvaliacao(double avaliacao) {
-		double avaliacao_aux = this.avaliacao * cont_avaliacao;
-		cont_avaliacao++;
-		this.avaliacao = (avaliacao+avaliacao_aux)/cont_avaliacao;
+		double avaliacao_aux = this.avaliacao * contadorAvaliacao;
+		contadorAvaliacao++;
+		this.avaliacao = (avaliacao+avaliacao_aux)/contadorAvaliacao;
 	}
 	
 	/* Metodo temporário enquanto não tem Banco de Dados */
@@ -20,7 +20,7 @@ public class Entregador extends Usuario{
 		entregador.setTempo_servico(1);
 		
 		return "\nNome: " + entregador.getNome() + "\nAvaliação: " + entregador.getAvaliacao() + " estrelas" +
-		"Tempo de serviço: " + entregador.getTempo_servico() + " meses\n";
+		"\nTempo de serviço: " + entregador.getTempo_servico() + " meses\n";
 	}
 	
 	public void setComissaoEntregador(double tempoCompra, double totalCompra, int qtdProdutos){
@@ -38,10 +38,10 @@ public class Entregador extends Usuario{
 	}
 	
 	public double getTempo_servico() {
-		return tempo_servico;
+		return tempoServico;
 	}
 	public void setTempo_servico(double tempo_servico) {
-		this.tempo_servico = tempo_servico;
+		this.tempoServico = tempo_servico;
 	}
 	
 }

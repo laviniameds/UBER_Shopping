@@ -3,12 +3,14 @@ import java.util.Scanner;
 
 public class Main {
 	
-	public static void menuEntregador(Entregador entregador, Localizacao localizacao){
+	public static int menuEntregador(Scanner sc, Entregador entregador, Localizacao localizacao){		
 		System.out.println("Encontramos um entregador a " + localizacao.getDistancia() + " de você!");
 		
 		System.out.println(entregador.getEntregador());
 		
-		System.out.println("\n1 - Aceitar entregador\n2 - Escolher outro entregador");
+		System.out.println("\n2 - Aceitar entregador\n3 - Escolher outro entregador");
+		
+		return sc.nextInt();
 	}
 	
 	public static void main(String[] args) {
@@ -24,10 +26,12 @@ public class Main {
 			
 			switch (op) {
 			case 1:
-				while(op != 1){
-					menuEntregador(entregador, localizacao);	
+				
+				while(op != 2){
+					op = menuEntregador(sc, entregador, localizacao);	
 				}
 				
+				System.out.println("pronto");
 				
 				break;
 
