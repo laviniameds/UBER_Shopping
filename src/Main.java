@@ -5,7 +5,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Compra compra = new Compra();
+		Entregador entregador = new Entregador();
 		
 		Localizacao localizacao = new Localizacao();
 		
@@ -16,9 +16,9 @@ public class Main {
 			
 			switch (op) {
 			case 1:				
-				System.out.println("Encontramos um entregador a " + localizacao.getDistancia() + " metros de você!");
+				System.out.println("Encontramos um entregador a " + localizacao.getDistancia() + " de você!");
 				
-				System.out.println(compra.getEntregador());
+				System.out.println(entregador.getEntregador());
 				
 				System.out.println("\n1 - Aceitar entregador\n2 - Escolher outro entregador");
 				

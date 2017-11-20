@@ -3,10 +3,10 @@ public class Compra {
 	
 	private double total;
 	private double tempo;
-	private String local; //Vamos ter que criar alguma funcao que compare localização dos bairros de Natal pra medir distância e usar pra calcular o tempo.
+	private String local;
 	private Produto produtos[];
 	
-	public void setQtdProdutos(int qtd) { //Para definir tamanho da array de produtos da compra.
+	public void setQtdProdutos(int qtd) { 
 		Produto aux[] = this.produtos;
 		
 		this.produtos = new Produto[qtd];
@@ -15,16 +15,6 @@ public class Compra {
 				this.produtos[i] = aux[i];
 			}
 		}
-	}
-	
-	public String getEntregador(){
-		Entregador entregador = new Entregador();
-		entregador.setAvaliacao(5);
-		entregador.setNome("Marcelo Ramón");
-		entregador.setTempo_servico(1);
-		
-		return "\nNome: " + entregador.getNome() + "\nAvaliação: " + entregador.getAvaliacao() + " estrelas" +
-		"Tempo de serviço: " + entregador.getTempo_servico() + " meses\n";
 	}
 
 	public double getTotal() {
