@@ -1,28 +1,24 @@
+import java.util.ArrayList;
 
 public class Compra {
 	
 	private double total;
 	private double tempo;
 	private String local;
-	private Produto produtos[];
+	private ArrayList<Produto> produtos;
 	
-	public void setQtdProdutos(int qtd) { 
-		Produto aux[] = this.produtos;
-		
-		this.produtos = new Produto[qtd];
-		if (aux != null) {
-			for (int i = 0; i < aux.length; i++) {
-				this.produtos[i] = aux[i];
-			}
-		}
+	public void adicionarProduto(Produto produto){
+		produtos.add(produto);
+		this.total += (produto.getPreco() * produto.getQuantidade());
+	}
+	
+	public void removerProduto(Produto produto){
+		produtos.remove(produto);
+		this.total -= (produto.getPreco() * produto.getQuantidade());
 	}
 
 	public double getTotal() {
 		return total;
-	}
-
-	public void setTotal(double total) {
-		this.total += total; //Pra ir somando conforme for adicionando produtos.
 	}
 
 	public double getTempo() {
