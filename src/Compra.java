@@ -5,7 +5,7 @@ public class Compra {
 	private double total;
 	private double tempo;
 	private String local;
-	private ArrayList<Produto> produtos;
+	private ArrayList<Produto> produtos = new ArrayList<Produto>(10);
 	
 	public void adicionarProduto(Produto produto){
 		produtos.add(produto);
@@ -15,6 +15,10 @@ public class Compra {
 	public void removerProduto(Produto produto){
 		produtos.remove(produto);
 		this.total -= (produto.getPreco() * produto.getQuantidade());
+	}
+	
+	public ArrayList<Produto> getCesta() {
+		return produtos;
 	}
 
 	public double getTotal() {

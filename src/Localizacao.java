@@ -5,14 +5,15 @@ public class Localizacao{
 	private Random r = new Random();
     
     private double gerarDistancia(){
-        return Math.round(100 + r.nextDouble() * 5000);
+        return 100 * Math.round(1 + r.nextDouble() * 50);
     }
     
     public String getDistancia(){
-    	int distancia = (int)gerarDistancia();
+    	double distancia = gerarDistancia();
     	if(distancia >= 1000){
+    		distancia = distancia/1000;
     		return distancia + "km";
     	}
-    	else return distancia + "m";
+    	else return (int)distancia + "m";
     }
 }
