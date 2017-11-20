@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 
 public class Main {
-
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Entregador entregador = new Entregador();
-		Usuario usuario = new Cliente();
+		Compra compra = new Compra();
+		
 		Localizacao localizacao = new Localizacao();
 		
 		int op = -1;		
@@ -14,9 +14,19 @@ public class Main {
 			System.out.println("#####\n1 - Fazer Compra\n0 - Sair");
 			op = sc.nextInt();
 			
-			if(op == 1)
-				System.out.println("Encontramos um motorista a " 
-			+ localizacao.getDistancia() + " metros de você!");
+			switch (op) {
+			case 1:				
+				System.out.println("Encontramos um entregador a " + localizacao.getDistancia() + " metros de você!");
+				
+				System.out.println(compra.getEntregador());
+				
+				System.out.println("\n1 - Aceitar entregador\n2 - Escolher outro entregador");
+				
+				break;
+
+			default:
+				break;
+			}
 		}
 
 	}

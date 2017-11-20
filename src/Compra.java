@@ -16,6 +16,16 @@ public class Compra {
 			}
 		}
 	}
+	
+	public String getEntregador(){
+		Entregador entregador = new Entregador();
+		entregador.setAvaliacao(5);
+		entregador.setNome("Marcelo Ramón");
+		entregador.setTempo_servico(1);
+		
+		return "\nNome: " + entregador.getNome() + "\nAvaliação: " + entregador.getAvaliacao() + " estrelas" +
+		"Tempo de serviço: " + entregador.getTempo_servico() + " meses\n";
+	}
 
 	public double getTotal() {
 		return total;

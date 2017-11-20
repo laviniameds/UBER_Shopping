@@ -5,6 +5,6 @@ public class Localizacao{
 	private Random r = new Random();
     
     public double getDistancia(){
-        return r.nextDouble() * 50.0;
+        return Math.round(1 + r.nextDouble() * 50);
     }
 }
