@@ -15,7 +15,7 @@ public class Main {
 	}
 	
 	public static int menuCompra(Scanner sc){
-		System.out.println("#####\nFazer Compra\n	11 - Consultar Menu\n	12 - Cadastrar produto\n9 - Voltar\n");
+		System.out.println("\nFazer Compra\n	11 - Consultar Menu\n	12 - Cadastrar produto\n9 - Voltar\n");
 		return sc.nextInt();
 	}	
 	
@@ -33,6 +33,9 @@ public class Main {
 			
 			switch (op) {
 			case 1:
+				System.out.print("Insira o local da compra: ");
+				sc.nextLine();
+				compra.setLocal(sc.nextLine());
 				op = menuCompra(sc);
 				if (op == 11) {
 					//Fazer um menu genérico dividido em categorias
@@ -80,7 +83,7 @@ public class Main {
 			case 2:
 				if (compra.getCesta().size() == 0) System.out.println("\n-- Cesta vazia --\n");
 				else {
-					System.out.println();
+					System.out.println("\nLocal: " + compra.getLocal());
 					for (int i = 0; i < compra.getCesta().size(); i++) {
 						System.out.println("---------------");
 						System.out.println("Item " + (i+1) + " - " +compra.getCesta().get(i).getNome());
