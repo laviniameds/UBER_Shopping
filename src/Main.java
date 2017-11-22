@@ -100,7 +100,9 @@ public class Main {
 				while(op == 22){
 					op = menuEntregador(sc, entregador, localizacao);	
 				}
-				if (op == 21) System.out.println("Confirmado!\nSua compra chegará em até [VER TEMPO].");
+				if (op == 21) {
+					System.out.println("Confirmado!\nSua compra chegará em até [VER TEMPO].");
+				}
 				
 				break;
 
