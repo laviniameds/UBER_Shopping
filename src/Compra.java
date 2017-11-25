@@ -6,6 +6,11 @@ public class Compra {
 	private double tempo;
 	private String local;
 	private ArrayList<Produto> produtos = new ArrayList<Produto>(10);
+	private Localizacao localizacao = new Localizacao();
+	
+	public Localizacao getLocalizacao() {
+		return this.localizacao;
+	}
 	
 	public void adicionarProduto(Produto produto){
 		produtos.add(produto);

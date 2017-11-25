@@ -5,6 +5,11 @@ public class Entregador extends Usuario{
 	private int contadorAvaliacao = 1; //Quantas avaliações já teve, pra calcular a média após nova avaliação
 	private double tempoServico;
 	private double comissao;
+	private Localizacao localizacao = new Localizacao();
+	
+	public Localizacao getLocalizacao() {
+		return this.localizacao;
+	}
 		
 	public void setAvaliacao(double avaliacao) {
 		double avaliacao_aux = this.avaliacao * contadorAvaliacao;
