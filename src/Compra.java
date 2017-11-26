@@ -2,11 +2,13 @@ import java.util.ArrayList;
 
 public class Compra {
 	
-	private double total;
+	private double valorTotalProdutos;
+	private double valorTotalCompra;
 	private double tempo;
 	private String local;
 	private ArrayList<Produto> produtos;
 	private Localizacao localizacao;
+	private double comissaoEntregador;
 	
 	public Compra(){
 		this.produtos = new ArrayList<Produto>(10);
@@ -19,29 +21,50 @@ public class Compra {
 	
 	public void adicionarProduto(Produto produto){
 		produtos.add(produto);
-		this.total += (produto.getPreco() * produto.getQuantidade());
+		this.valorTotalProdutos += (produto.getPreco() * produto.getQuantidade());
 	}
 	
 	public void removerProduto(Produto produto){
 		if(this.produtos.contains(produto)){
 			this.produtos.remove(produto);
-			this.total -= (produto.getPreco() * produto.getQuantidade());
+			this.valorTotalProdutos -= (produto.getPreco() * produto.getQuantidade());
 		}
+	}
+	
+	public void setComissaoEntregador(){
+		this.comissaoEntregador = ((this.getTempo() + this.getValorTotalProdutos() 
+				+ this.qtdProdutosCesta())*15)/100;
+	}
+	
+	public double getComissaoEntregador(){
+		return this.comissaoEntregador;
 	}
 	
 	public ArrayList<Produto> getCesta() {
 		return this.produtos;
 	}
 	
+	public int qtdProdutosCesta(){
+		return this.produtos.size();
+	}
+	
 	public boolean CestaVazia(){
-		if(this.produtos.size() == 0)
+		if(qtdProdutosCesta() == 0)
 			return true;
 		else
 			return false;
 	}
 
-	public double getTotal() {
-		return total;
+	public double getValorTotalProdutos() {
+		return valorTotalProdutos;
+	}
+	
+	public void setValorTotalCompra(){
+		this.valorTotalCompra = getValorTotalProdutos() + getComissaoEntregador();
+	}
+	
+	public double getValorTotalCompra(){
+		return this.valorTotalCompra;
 	}
 
 	public double getTempo() {

@@ -96,7 +96,8 @@ public class Main {
 						else {
 							System.out.println("\nLocal: " + compra.getLocal());
 							exibirCesta(compra);
-							System.out.println("\nTotal R$ " + compra.getTotal() + "\n");
+							
+							System.out.println("\n\nValor da compra:" + compra.getValorTotalProdutos());
 						}	
 					}
 				}
@@ -113,7 +114,13 @@ public class Main {
 					}
 					if (op == 21) {
 						compra.setTempo(entregador);
+						compra.setComissaoEntregador();
+						compra.setValorTotalCompra();
 						System.out.println("Confirmado!\nSua compra chegará em até " + compra.getTempo() + " minutos.");
+						
+						System.out.println("\nValor da compra:" + compra.getValorTotalProdutos());
+						System.out.println("Taxa de Serviço: R$ " + compra.getComissaoEntregador());
+						System.out.println("\n\nTotal: R$ " + compra.getValorTotalCompra() + "\n");
 					}
 				}
 					

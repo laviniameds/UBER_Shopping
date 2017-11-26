@@ -4,7 +4,6 @@ public class Entregador extends Usuario{
 	private double avaliacao = 5;
 	private int contadorAvaliacao = 1; //Quantas avaliações já teve, pra calcular a média após nova avaliação
 	private double tempoServico;
-	private double comissao;
 	private Localizacao localizacao = new Localizacao();
 	
 	public Localizacao getLocalizacao() {
@@ -28,16 +27,6 @@ public class Entregador extends Usuario{
 		"\nTempo de serviço: " + entregador.getTempo_servico() + " meses\n";
 	}
 	
-	public void setComissaoEntregador(double tempoCompra, double totalCompra, int qtdProdutos){
-		this.comissao = ((tempoCompra + totalCompra + qtdProdutos)*30)/100;
-	}
-	
-	public double getComissao() {
-		return comissao;
-	}
-	public void setComissao(double comissao) {
-		this.comissao = comissao;
-	}
 	public double getAvaliacao() {
 		return avaliacao;
 	}
