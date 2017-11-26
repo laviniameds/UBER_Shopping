@@ -21,6 +21,13 @@ public class Main {
 		return sc.nextInt();
 	}
 	
+	public static void exibirCesta(Compra compra){
+		for (int i = 0; i < compra.getCesta().size(); i++) {
+			System.out.print("[" + (i+1) + "] - " + compra.getCesta().get(i).getQuantidade() + " x " +compra.getCesta().get(i).getNome());
+			System.out.print(" - R$ " + compra.getCesta().get(i).getPreco() + "\n");
+		}
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Entregador entregador = new Entregador();
@@ -69,42 +76,26 @@ public class Main {
 						produto.setNome(sc.nextLine());
 						System.out.print("Preço: R$ ");
 						produto.setPreco(sc.nextFloat());
-						/*
-						if (produto.getCategoria().equalsIgnoreCase("Alimentos") || produto.getCategoria().equalsIgnoreCase("Material de limpeza")) {
-							System.out.print("Unidade: ");
-							produto.setUnidade(sc.next());
-						}
-						else produto.setUnidade("Unitário"); 
-						*/ 
 						System.out.print("Quantidade: ");
 						produto.setQuantidade(sc.nextInt());
 						
 						compra.adicionarProduto(produto);
 					}
 					else if (op == 12) {
-						if (compra.getCesta().size() == 0) System.out.println("\n-- Cesta vazia --\n");
+						if (compra.CestaVazia()) System.out.println("\n-- Cesta vazia --\n");
 						else {
 							System.out.println();
-							for (int i = 0; i < compra.getCesta().size(); i++) {
-								System.out.print("[" + (i+1) + "] - " + compra.getCesta().get(i).getQuantidade() + " x " +compra.getCesta().get(i).getNome());
-								System.out.print(" - R$ " + compra.getCesta().get(i).getPreco() + "\n");
-							}
+							exibirCesta(compra);
 							System.out.print("Digite o número do produto que deseja excluir\n-> ");
-							int excluirN = sc.nextInt();
-							if (excluirN <= compra.getCesta().size()) {
-								compra.removerProduto(compra.getCesta().get(excluirN-1));
-								System.out.println("\nProduto excluído.\n");
-							}
+							compra.removerProduto(compra.getCesta().get(sc.nextInt()-1));
+							System.out.println("\nProduto excluído.\n");
 						}
 					}
 					else if (op == 13) {
-						if (compra.getCesta().size() == 0) System.out.println("\n-- Cesta vazia --\n");
+						if (compra.CestaVazia()) System.out.println("\n-- Cesta vazia --\n");
 						else {
 							System.out.println("\nLocal: " + compra.getLocal());
-							for (int i = 0; i < compra.getCesta().size(); i++) {
-								System.out.print("[" + (i+1) + "] - " + compra.getCesta().get(i).getQuantidade() + " x " +compra.getCesta().get(i).getNome());
-								System.out.print(" - R$ " + compra.getCesta().get(i).getPreco() + "\n");
-							}
+							exibirCesta(compra);
 							System.out.println("\nTotal R$ " + compra.getTotal() + "\n");
 						}	
 					}
@@ -112,7 +103,7 @@ public class Main {
 				break;
 
 			case 2:
-				if (compra.getCesta().size() == 0) {
+				if (compra.CestaVazia()) {
 					System.out.println("\nNão foi inserido nenhum produto na compra.\n");
 				}
 				else {
@@ -121,8 +112,8 @@ public class Main {
 						op = menuEntregador(sc, entregador, compra);	
 					}
 					if (op == 21) {
-						int tempo = 20 + (int)(entregador.getLocalizacao().getDistanciaDefinida()/100) + (int)(compra.getLocalizacao().getDistanciaDefinida()/100);
-						System.out.println("Confirmado!\nSua compra chegará em até " + tempo + " minutos.");
+						compra.setTempo(entregador);
+						System.out.println("Confirmado!\nSua compra chegará em até " + compra.getTempo() + " minutos.");
 					}
 				}
 					
