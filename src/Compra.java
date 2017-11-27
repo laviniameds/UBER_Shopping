@@ -11,7 +11,7 @@ public class Compra {
 	private double comissaoEntregador;
 	
 	public Compra(){
-		this.produtos = new ArrayList<Produto>(10);
+		this.produtos = new ArrayList<Produto>(50);
 		this.localizacao = new Localizacao();
 	}
 	

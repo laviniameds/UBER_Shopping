@@ -51,34 +51,46 @@ public class Main {
 					op = menuCompra(sc);
 					if (op == 11) {
 						Produto produto = new Produto();
-						int catOp;
-						System.out.println("Selecione a categoria:\n[1] - Alimentos\n[2] - Vestuário\n[3] - Eletrônicos\n[4] - Material de limpeza\n[5] - Diversos\n");
-						catOp = sc.nextInt();
-						switch (catOp) {
-						case 1:
-							produto.setCategoria("Alimentos");
-							break;
-						case 2:
-							produto.setCategoria("Vestuário");
-							break;
-						case 3:
-							produto.setCategoria("Eletrônicos");
-							break;
-						case 4:
-							produto.setCategoria("Material de Limpeza");
-							break;
-						default:
-							produto.setCategoria("Diversos");
-							break;
-						}
+						String catOp;
+						boolean ok;
+						do {
+							ok = false;
+							System.out.println("Selecione a categoria:\n[1] - Alimentos\n[2] - Vestuário\n[3] - Eletrônicos\n[4] - Material de limpeza\n[5] - Diversos\n");
+							catOp = sc.next();
+							switch (catOp) {
+							case "1":
+								produto.setCategoria("Alimentos");
+								break;
+							case "2":
+								produto.setCategoria("Vestuário");
+								break;
+							case "3":
+								produto.setCategoria("Eletrônicos");
+								break;
+							case "4":
+								produto.setCategoria("Material de Limpeza");
+								break;
+							case "5":
+								produto.setCategoria("Diversos");
+								break;
+							default:
+								System.out.println("Opção inválida");
+								ok = true;
+								break;
+							}
+						}while(ok);
+						
 						System.out.print("Nome: ");
 						sc.nextLine();
 						produto.setNome(sc.nextLine());
-						System.out.print("Preço: R$ ");
-						produto.setPreco(sc.nextFloat());
-						System.out.print("Quantidade: ");
-						produto.setQuantidade(sc.nextInt());
-						
+						do {
+							System.out.print("Preço: R$ ");
+							produto.setPreco(sc.nextFloat());
+						}while(produto.getPreco() < 0.01);
+						do {
+							System.out.print("Quantidade: ");
+							produto.setQuantidade(sc.nextInt());
+						}while(produto.getQuantidade() < 1);
 						compra.adicionarProduto(produto);
 					}
 					else if (op == 12) {
@@ -86,9 +98,14 @@ public class Main {
 						else {
 							System.out.println();
 							exibirCesta(compra);
-							System.out.print("Digite o número do produto que deseja excluir\n-> ");
-							compra.removerProduto(compra.getCesta().get(sc.nextInt()-1));
-							System.out.println("\nProduto excluído.\n");
+							try {
+								System.out.print("Digite o número do produto que deseja excluir\n-> ");
+								compra.removerProduto(compra.getCesta().get(sc.nextInt()-1));
+								System.out.println("\nProduto excluído.\n");									
+							}
+							catch (Exception e) {
+								System.out.println("Opção inválida");
+							}
 						}
 					}
 					else if (op == 13) {
