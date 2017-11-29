@@ -28,21 +28,37 @@ public class Main {
 		}
 	}
 	
+	public static int lerInteiro(Scanner sc) {
+		int op ;
+		try {
+			op = sc.nextInt();
+		}
+		catch (Exception e) {
+			System.out.println("Opção inválida.");
+			sc.nextLine();
+			op = 404;
+		}
+		return op;
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Entregador entregador = new Entregador();
 		Compra compra = new Compra();
+		boolean ok;
 		
 		int op = -1;		
 		while(op != 0){
-			System.out.println("#####\n1 - Comprar\n2 - Confirmar Pedido\n0 - Sair");
-			op = sc.nextInt();
+			
+			do {
+				System.out.println("#####\n1 - Comprar\n2 - Confirmar Pedido\n0 - Sair");
+				op = lerInteiro(sc);
+			}while (op == 404);
 			
 			switch (op) {
 			case 1:
 				if (compra.getLocal() == null) {
 					System.out.print("Insira o local da compra: ");
-					sc.nextLine();
 					compra.setLocal(sc.nextLine());
 					System.out.println(compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização.");
 				}
@@ -52,7 +68,7 @@ public class Main {
 					if (op == 11) {
 						Produto produto = new Produto();
 						String catOp;
-						boolean ok;
+						
 						do {
 							ok = false;
 							System.out.println("Selecione a categoria:\n[1] - Alimentos\n[2] - Vestuário\n[3] - Eletrônicos\n[4] - Material de limpeza\n[5] - Diversos\n");
