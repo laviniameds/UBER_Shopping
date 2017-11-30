@@ -44,6 +44,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Entregador entregador = new Entregador();
+		Cliente cliente = new Cliente();
 		Compra compra = new Compra();
 		boolean ok;
 		
@@ -59,6 +60,7 @@ public class Main {
 			case 1:
 				if (compra.getLocal() == null) {
 					System.out.print("Insira o local da compra: ");
+					sc.nextLine();
 					compra.setLocal(sc.nextLine());
 					System.out.println(compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização.");
 				}
@@ -154,6 +156,11 @@ public class Main {
 						System.out.println("\nValor da compra:" + compra.getValorTotalProdutos());
 						System.out.println("Taxa de Serviço: R$ " + compra.getComissaoEntregador());
 						System.out.println("\n\nTotal: R$ " + compra.getValorTotalCompra() + "\n");
+						System.out.print("\nAvalie nosso entregador " + entregador.getNome() + " (0 a 5)\n-> ");
+						entregador.setAvaliacao(sc.nextDouble());
+						System.out.println("Obrigado!\nAvaliacão atual: " + entregador.getAvaliacao());
+						cliente.adicionarCompra(compra);
+						compra = new Compra();
 					}
 				}
 					
