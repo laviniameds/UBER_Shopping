@@ -67,6 +67,7 @@ public class Main {
 			op = lerInteiro(sc);
 		}while(op == 404 || op < 1 || op > 2);
 		
+		//INTERFACE DO USUARIO
 		if (op == 1) {
 			
 			do {
@@ -202,6 +203,15 @@ public class Main {
 					break;
 				}
 			}
+		}
+		//INTERFACE DO ENTREGADOR
+		else if (op == 2) {
+			do {
+				System.out.print("Login: ");
+				login = sc.next();
+				System.out.print("Senha: ");
+				senha = sc.next();
+			} while(!validarLogin(entregador, login, senha));
 		}
 
 	}
