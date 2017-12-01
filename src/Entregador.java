@@ -7,6 +7,8 @@ public class Entregador extends Usuario{
 		setAvaliacao(5);
 		setNome("Marcelo Ramón");
 		setTempo_servico(1);
+		setLogin("ramon");
+		setSenha("123");
 	}
 	
 	/* Metodo temporário enquanto não tem Banco de Dados */

@@ -41,138 +41,166 @@ public class Main {
 		return op;
 	}
 	
+	public static boolean validarLogin(Usuario usuario, String login, String senha) {
+		
+		if (login.equals(usuario.getLogin()) && senha.equals(usuario.getSenha())) {
+			return true;
+		}
+		
+		System.out.println("Usuário ou senha incorretos");
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Entregador entregador = new Entregador();
 		Cliente cliente = new Cliente();
 		Compra compra = new Compra();
+		String login;
+		String senha;
+		int op;
 		boolean ok;
 		
-		int op = -1;		
-		while(op != 0){
+		do {
+			System.out.println("UBER SHOPPING\n");
+			System.out.print("Entrar como:\n[1] Cliente\n[2] Entregador\n-> ");
+			op = lerInteiro(sc);
+		}while(op == 404 || op < 1 || op > 2);
+		
+		if (op == 1) {
 			
 			do {
-				System.out.println("#####\n1 - Comprar\n2 - Confirmar Pedido\n0 - Sair");
-				op = lerInteiro(sc);
-			}while (op == 404);
+				System.out.print("Login: ");
+				login = sc.next();
+				System.out.print("Senha: ");
+				senha = sc.next();
+			} while(!validarLogin(cliente, login, senha));
 			
-			switch (op) {
-			case 1:
-				if (compra.getLocal() == null) {
-					System.out.print("Insira o local da compra: ");
-					sc.nextLine();
-					compra.setLocal(sc.nextLine());
-					System.out.println(compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização.");
-				}
-				op = 0;
-				while (op != 9) {
-					op = menuCompra(sc);
-					if (op == 11) {
-						Produto produto = new Produto();
-						String catOp;
-						
-						do {
-							ok = false;
-							System.out.println("Selecione a categoria:\n[1] - Alimentos\n[2] - Vestuário\n[3] - Eletrônicos\n[4] - Material de limpeza\n[5] - Diversos\n");
-							catOp = sc.next();
-							switch (catOp) {
-							case "1":
-								produto.setCategoria("Alimentos");
-								break;
-							case "2":
-								produto.setCategoria("Vestuário");
-								break;
-							case "3":
-								produto.setCategoria("Eletrônicos");
-								break;
-							case "4":
-								produto.setCategoria("Material de Limpeza");
-								break;
-							case "5":
-								produto.setCategoria("Diversos");
-								break;
-							default:
-								System.out.println("Opção inválida");
-								ok = true;
-								break;
-							}
-						}while(ok);
-						
-						System.out.print("Nome: ");
+			while(op != 0){
+				
+				do {
+					System.out.println("\n#####\n1 - Comprar\n2 - Confirmar Pedido\n0 - Sair");
+					op = lerInteiro(sc);
+				}while (op == 404);
+				
+				switch (op) {
+				case 1:
+					if (compra.getLocal() == null) {
+						System.out.print("Insira o local da compra: ");
 						sc.nextLine();
-						produto.setNome(sc.nextLine());
-						do {
-							System.out.print("Preço: R$ ");
-							produto.setPreco(sc.nextFloat());
-						}while(produto.getPreco() < 0.01);
-						do {
-							System.out.print("Quantidade: ");
-							produto.setQuantidade(sc.nextInt());
-						}while(produto.getQuantidade() < 1);
-						compra.adicionarProduto(produto);
+						compra.setLocal(sc.nextLine());
+						System.out.println(compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização.");
 					}
-					else if (op == 12) {
-						if (compra.CestaVazia()) System.out.println("\n-- Cesta vazia --\n");
-						else {
-							System.out.println();
-							exibirCesta(compra);
-							try {
-								System.out.print("Digite o número do produto que deseja excluir\n-> ");
-								compra.removerProduto(compra.getCesta().get(sc.nextInt()-1));
-								System.out.println("\nProduto excluído.\n");									
-							}
-							catch (Exception e) {
-								System.out.println("Opção inválida");
+					op = 0;
+					while (op != 9) {
+						op = menuCompra(sc);
+						if (op == 11) {
+							Produto produto = new Produto();
+							String catOp;
+							
+							do {
+								ok = false;
+								System.out.println("Selecione a categoria:\n[1] - Alimentos\n[2] - Vestuário\n[3] - Eletrônicos\n[4] - Material de limpeza\n[5] - Diversos\n");
+								catOp = sc.next();
+								switch (catOp) {
+								case "1":
+									produto.setCategoria("Alimentos");
+									break;
+								case "2":
+									produto.setCategoria("Vestuário");
+									break;
+								case "3":
+									produto.setCategoria("Eletrônicos");
+									break;
+								case "4":
+									produto.setCategoria("Material de Limpeza");
+									break;
+								case "5":
+									produto.setCategoria("Diversos");
+									break;
+								default:
+									System.out.println("Opção inválida");
+									ok = true;
+									break;
+								}
+							}while(ok);
+							
+							System.out.print("Nome: ");
+							sc.nextLine();
+							produto.setNome(sc.nextLine());
+							do {
+								System.out.print("Preço: R$ ");
+								produto.setPreco(sc.nextFloat());
+							}while(produto.getPreco() < 0.01);
+							do {
+								System.out.print("Quantidade: ");
+								produto.setQuantidade(sc.nextInt());
+							}while(produto.getQuantidade() < 1);
+							compra.adicionarProduto(produto);
+						}
+						else if (op == 12) {
+							if (compra.CestaVazia()) System.out.println("\n-- Cesta vazia --\n");
+							else {
+								System.out.println();
+								exibirCesta(compra);
+								try {
+									System.out.print("Digite o número do produto que deseja excluir\n-> ");
+									compra.removerProduto(compra.getCesta().get(sc.nextInt()-1));
+									System.out.println("\nProduto excluído.\n");									
+								}
+								catch (Exception e) {
+									System.out.println("Opção inválida");
+								}
 							}
 						}
+						else if (op == 13) {
+							if (compra.CestaVazia()) System.out.println("\n-- Cesta vazia --\n");
+							else {
+								System.out.println("\nLocal: " + compra.getLocal());
+								exibirCesta(compra);
+								
+								System.out.println("\n\nValor da compra:" + compra.getValorTotalProdutos());
+							}	
+						}
 					}
-					else if (op == 13) {
-						if (compra.CestaVazia()) System.out.println("\n-- Cesta vazia --\n");
-						else {
-							System.out.println("\nLocal: " + compra.getLocal());
-							exibirCesta(compra);
+					break;
+	
+				case 2:
+					if (compra.CestaVazia()) {
+						System.out.println("\nNão foi inserido nenhum produto na compra.\n");
+					}
+					else {
+						op = 22;
+						while(op == 22){
+							op = menuEntregador(sc, entregador, compra);	
+						}
+						if (op == 21) {
+							compra.setTempo(entregador);
+							compra.setComissaoEntregador();
+							compra.setValorTotalCompra();
+							System.out.println("Confirmado!\nSua compra chegará em até " + compra.getTempo() + " minutos.");
 							
-							System.out.println("\n\nValor da compra:" + compra.getValorTotalProdutos());
-						}	
+							System.out.println("\nValor da compra:" + compra.getValorTotalProdutos());
+							System.out.println("Taxa de Serviço: R$ " + compra.getComissaoEntregador());
+							System.out.println("\n\nTotal: R$ " + compra.getValorTotalCompra() + "\n");
+							System.out.print("\nAvalie nosso entregador " + entregador.getNome() + " (0 a 5)\n-> ");
+							entregador.setAvaliacao(sc.nextDouble());
+							System.out.println("Obrigado!\nAvaliacão atual: " + String.format("%.1f", entregador.getAvaliacao()));
+							cliente.adicionarHistoricoDeCompra(compra);
+							compra = new Compra();
+						}
 					}
-				}
-				break;
-
-			case 2:
-				if (compra.CestaVazia()) {
-					System.out.println("\nNão foi inserido nenhum produto na compra.\n");
-				}
-				else {
-					op = 22;
-					while(op == 22){
-						op = menuEntregador(sc, entregador, compra);	
-					}
-					if (op == 21) {
-						compra.setTempo(entregador);
-						compra.setComissaoEntregador();
-						compra.setValorTotalCompra();
-						System.out.println("Confirmado!\nSua compra chegará em até " + compra.getTempo() + " minutos.");
 						
-						System.out.println("\nValor da compra:" + compra.getValorTotalProdutos());
-						System.out.println("Taxa de Serviço: R$ " + compra.getComissaoEntregador());
-						System.out.println("\n\nTotal: R$ " + compra.getValorTotalCompra() + "\n");
-						System.out.print("\nAvalie nosso entregador " + entregador.getNome() + " (0 a 5)\n-> ");
-						entregador.setAvaliacao(sc.nextDouble());
-						System.out.println("Obrigado!\nAvaliacão atual: " + entregador.getAvaliacao());
-						cliente.adicionarCompra(compra);
-						compra = new Compra();
-					}
-				}
+					break;
 					
-				break;
+				case 3:
+					
+					break;
+					
+				default:
 				
-			case 3:
-				
-				break;
-				
-			default:
-			
-				break;
+					break;
+				}
 			}
 		}
 

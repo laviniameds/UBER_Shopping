@@ -6,18 +6,14 @@ public class Cliente extends Usuario{
 	
 	public Cliente() {
 		this.compras = new ArrayList<Compra>(50);
+		setAvaliacao(5);
+		setNome("Carlos Manuel");
+		setLogin("manuel");
+		setSenha("123");
 	}
 	
-	public void adicionarCompra(Compra compra){
+	public void adicionarHistoricoDeCompra(Compra compra){
 		compras.add(compra);
 	}
-	
-	public Cliente getCliente(){
-		Cliente cliente = new Cliente();
-		cliente.setAvaliacao(5);
-		cliente.setNome("Carlos Manuel");
 		
-		return cliente;
-	}
-	
 }
