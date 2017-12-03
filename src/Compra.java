@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Compra {
 	
 	private double valorTotalProdutos;
 	private double valorTotalCompra;
 	private double tempo;
+        private Date data;
 	private String local;
 	private ArrayList<Produto> produtos;
 	private Localizacao localizacao;
