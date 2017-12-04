@@ -78,7 +78,6 @@ public class Main {
 			} while(!validarLogin(cliente, login, senha));
 			
 			while(op != 0){
-				
 				do {
 					System.out.println("\n#####\n1 - Comprar\n2 - Confirmar Pedido\n0 - Sair");
 					op = lerInteiro(sc);
