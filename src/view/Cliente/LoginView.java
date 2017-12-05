@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package view.Cliente;
+import classes.Usuario;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,8 +17,20 @@ public class LoginView extends javax.swing.JFrame {
     /**
      * Creates new form LoginView
      */
-    public LoginView() {
+    
+    private static Usuario cliente;
+    
+    public LoginView(Usuario cliente) {
         initComponents();
+        this.cliente = cliente;
+    }
+    
+    public static boolean validarLogin(Usuario usuario, String login, String senha) {
+		
+        if (login.equals(usuario.getLogin()) && senha.equals(usuario.getSenha())) {
+                return true;
+        }
+        return false;
     }
 
     /**
@@ -29,8 +44,8 @@ public class LoginView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        passLoginCliente = new javax.swing.JPasswordField();
+        txtLoginCLiente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -66,10 +81,10 @@ public class LoginView extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(txtLoginCLiente)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 2, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(passLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(113, 113, 113))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,11 +108,11 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLoginCLiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passLoginCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(49, 49, 49)
                 .addComponent(jButton1)
@@ -121,7 +136,14 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(validarLogin(cliente, txtLoginCLiente.getText().toString(), passLoginCliente.getText().toString())){
+            JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
+            new HomeView(cliente).setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -154,7 +176,7 @@ public class LoginView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginView().setVisible(true);
+                //new LoginView().setVisible(true);
             }
         });
     }
@@ -166,7 +188,7 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField passLoginCliente;
+    private javax.swing.JTextField txtLoginCLiente;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,9 +1,19 @@
+package classes;
+
 import java.util.Scanner;
 
 
-public class Main {
-	
-	public static int menuEntregador(Scanner sc, Entregador entregador, Compra compra){	
+public class Main {  
+    
+        public static void main(String[] args) {
+            
+           Cliente c = new Cliente();
+           new view.Cliente.LoginView(c).setVisible(true);
+                       
+        } 
+               
+        
+	/*public static int menuEntregador(Scanner sc, Entregador entregador, Compra compra){	
 		
 			Localizacao localizacao = entregador.getLocalizacao();
 		
@@ -206,13 +216,14 @@ public class Main {
 		//INTERFACE DO ENTREGADOR
 		else if (op == 2) {
 			do {
-				System.out.print("Login: ");
-				login = sc.next();
-				System.out.print("Senha: ");
-				senha = sc.next();
+                            System.out.print("Login: ");
+                            login = sc.next();
+                            System.out.print("Senha: ");
+                            senha = sc.next();
+                                
 			} while(!validarLogin(entregador, login, senha));
 		}
 
-	}
+	}*/
 
 }
