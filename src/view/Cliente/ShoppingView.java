@@ -90,7 +90,7 @@ public class ShoppingView extends javax.swing.JFrame {
         txtPreco = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,7 +142,12 @@ public class ShoppingView extends javax.swing.JFrame {
 
         jLabel7.setText("Quantidade:");
 
-        jButton5.setText("Cancelar");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,7 +197,7 @@ public class ShoppingView extends javax.swing.JFrame {
                                 .addGap(32, 32, 32))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton5)
+                                .addComponent(btnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +251,7 @@ public class ShoppingView extends javax.swing.JFrame {
                                 .addGap(6, 6, 6))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton5)))
+                                .addComponent(btnCancelar)))
                         .addContainerGap())))
         );
 
@@ -265,9 +270,14 @@ public class ShoppingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverProdActionPerformed
 
     private void btnFinalizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarListaActionPerformed
-        new ShoppingCheckoutView(cliente).setVisible(true);
+        new ShoppingCheckoutView(cliente, compra).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarListaActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.setVisible(false);
+        new HomeView(cliente).setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,9 +316,9 @@ public class ShoppingView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddLIsta;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnFinalizarLista;
     private javax.swing.JButton btnRemoverProd;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
