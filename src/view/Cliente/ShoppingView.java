@@ -36,7 +36,7 @@ public class ShoppingView extends javax.swing.JFrame {
         this.txtQuantidade.setText("");
     }
     
-    private Produto criarProduto(String descricao, Integer quantidade, Float preco){
+    private Produto addProdutoCompra(String descricao, Integer quantidade, Float preco){
         Produto p = new Produto();
         p.setNome(descricao);
         p.setQuantidade(quantidade);
@@ -51,6 +51,18 @@ public class ShoppingView extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbListaProd.getModel();
         Object[] objProduto = {p.getNome(), p.getQuantidade(), p.getPreco()};
         model.addRow(objProduto);
+    }
+    
+    private void remoProdutoTabela(Integer row){
+        DefaultTableModel model = (DefaultTableModel)tbListaProd.getModel();
+        int modelIndex = tbListaProd.convertRowIndexToModel(row);
+        model.removeRow(modelIndex);
+        
+        remProdutoCompra(modelIndex);
+    }
+    
+    private void remProdutoCompra(Integer index){
+        compra.removerProduto(compra.getCesta().get(index));
     }
 
     /**
@@ -242,14 +254,14 @@ public class ShoppingView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddLIstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLIstaActionPerformed
-        Produto p = criarProduto(txtDescricao.getText(), Integer.parseInt(txtQuantidade.getText()), Float.parseFloat(txtPreco.getText()));
+        Produto p = addProdutoCompra(txtDescricao.getText(), Integer.parseInt(txtQuantidade.getText()), Float.parseFloat(txtPreco.getText()));
         addProdutoTabela(p);
         lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));
         limparCampos();
     }//GEN-LAST:event_btnAddLIstaActionPerformed
 
     private void btnRemoverProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdActionPerformed
-        // TODO add your handling code here:
+        remoProdutoTabela(tbListaProd.getSelectedRow());
     }//GEN-LAST:event_btnRemoverProdActionPerformed
 
     private void btnFinalizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarListaActionPerformed
