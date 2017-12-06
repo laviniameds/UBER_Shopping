@@ -5,9 +5,9 @@
  */
 package view.Cliente;
 
-import classes.Compra;
-import classes.Produto;
-import classes.Usuario;
+import modelo.Compra;
+import modelo.Produto;
+import modelo.Usuario;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -265,7 +265,8 @@ public class ShoppingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverProdActionPerformed
 
     private void btnFinalizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarListaActionPerformed
-        // TODO add your handling code here:
+        new ShoppingCheckoutView(cliente).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarListaActionPerformed
 
     /**
