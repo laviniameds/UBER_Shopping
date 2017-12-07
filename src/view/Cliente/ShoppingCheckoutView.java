@@ -6,6 +6,7 @@
 package view.Cliente;
 
 import modelo.Compra;
+import modelo.Entregador;
 import modelo.Usuario;
 
 /**
@@ -15,6 +16,7 @@ import modelo.Usuario;
 public class ShoppingCheckoutView extends javax.swing.JFrame {
     
     private static Usuario cliente;
+    private static Entregador entregador;
     private static Compra compra;
 
     /**
@@ -24,11 +26,39 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
         initComponents();
         this.cliente = cliente;
         this.compra = compra;
+        
+        buscarEntregador();
+        CompraCheckout();
+        setEntregadorLabels();
+        setCompraCheckoutLabels();
     }
     
     private String escolherLocalCompra(String local){
         compra.setLocal(local);
         return compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização";
+    }
+    
+    private void buscarEntregador(){
+        entregador = new Entregador();
+        compra.setTempo(entregador);
+    }
+    
+    private void CompraCheckout(){
+        compra.setComissaoEntregador();
+        compra.setValorTotalCompra();  
+    }
+    
+    private void setEntregadorLabels(){
+        lblNomeEntregador.setText(entregador.getNome());
+        lblAvEntregador.setText(String.valueOf(entregador.getAvaliacao()));
+        lblTempoEntregador.setText(String.valueOf(entregador.getTempo_servico()));
+        lblDistEntregador.setText(compra.getLocalizacao().getDistancia());
+    }
+    
+    private void setCompraCheckoutLabels(){
+        lblValorCompra.setText(String.valueOf(compra.getValorTotalProdutos()));
+        lblTaxaServico.setText(String.valueOf(compra.getComissaoEntregador()));
+        lblTotal.setText(String.valueOf(compra.getValorTotalCompra()));
     }
 
     /**
@@ -79,7 +109,12 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
 
         lblDistanciaLocal.setText("<distancia do local>");
 
-        btnBuscarEntregador.setText("Buscar Entregador");
+        btnBuscarEntregador.setText("Buscar novo entregador");
+        btnBuscarEntregador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarEntregadorActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -139,9 +174,8 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
                                 .addComponent(btnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnFinalizarCompra))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblDistanciaLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-                                .addComponent(jSeparator1))
+                            .addComponent(lblDistanciaLocal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
@@ -172,14 +206,13 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblTotal))
                             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -241,17 +274,24 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        new ShoppingView(cliente).setVisible(true);
+        new ShoppingView(cliente, compra).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
         lblDistanciaLocal.setText(escolherLocalCompra(txtLocalizacao.getText()));
     }//GEN-LAST:event_btnLocalizarActionPerformed
+
+    private void btnBuscarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadorActionPerformed
+        buscarEntregador();
+        CompraCheckout();
+        setEntregadorLabels();
+        setCompraCheckoutLabels();
+    }//GEN-LAST:event_btnBuscarEntregadorActionPerformed
 
     /**
      * @param args the command line arguments

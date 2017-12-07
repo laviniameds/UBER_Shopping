@@ -24,10 +24,20 @@ public class ShoppingView extends javax.swing.JFrame {
     private static Usuario cliente;
     private static Compra compra;
     
-    public ShoppingView(Usuario cliente) {
+    public ShoppingView(Usuario cliente, Compra compra) {
         initComponents();
         this.cliente = cliente;
-        this.compra = new Compra();
+        
+        if(compra == null)
+           this.compra = new Compra();
+        else{
+            this.compra = compra;
+            setDadosTabela();
+        }        
+    }
+    
+    private void setDadosTabela(){
+        //preenche a tabela com o array de produtos da compra;
     }
     
     private void limparCampos(){

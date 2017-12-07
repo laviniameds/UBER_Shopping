@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Localizacao{
 	
-	private Random r = new Random();
+    private Random r = new Random();
     private double distancia;
 	
     private double gerarDistancia(){
