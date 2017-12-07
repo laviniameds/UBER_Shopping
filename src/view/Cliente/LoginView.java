@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package view.Cliente;
-import modelo.Usuario;
+import model.Usuario;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

@@ -5,9 +5,9 @@
  */
 package view.Cliente;
 
-import modelo.Compra;
-import modelo.Entregador;
-import modelo.Usuario;
+import model.Compra;
+import model.Entregador;
+import model.Usuario;
 
 /**
  *

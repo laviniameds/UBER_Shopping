@@ -5,9 +5,9 @@
  */
 package view.Cliente;
 
-import modelo.Compra;
-import modelo.Produto;
-import modelo.Usuario;
+import model.Compra;
+import model.Produto;
+import model.Usuario;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
