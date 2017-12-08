@@ -5,10 +5,8 @@
  */
 package view.Cliente;
 
-import model.Cliente;
-import model.Compra;
-import model.Entregador;
-import model.Usuario;
+import model.*;
+import controller.Controller;
 
 /**
  *
@@ -19,6 +17,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     private static Cliente cliente;
     private static Entregador entregador;
     private static Compra compra;
+    private static Controller controller;
 
     /**
      * Creates new form ShoppingAddProd
@@ -28,25 +27,10 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
         this.cliente = cliente;
         this.compra = compra;
         
-        buscarEntregador();
-        CompraCheckout();
+        controller.buscarEntregador(entregador, compra);
+        controller.CompraCheckout(compra);
         setEntregadorLabels();
         setCompraCheckoutLabels();
-    }
-    
-    private String escolherLocalCompra(String local){
-        compra.setLocal(local);
-        return compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização";
-    }
-    
-    private void buscarEntregador(){
-        entregador = new Entregador();
-        compra.setTempo(entregador);
-    }
-    
-    private void CompraCheckout(){
-        compra.setComissaoEntregador();
-        compra.setValorTotalCompra();  
     }
     
     private void setEntregadorLabels(){
@@ -285,13 +269,13 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        lblDistanciaLocal.setText(escolherLocalCompra(txtLocalizacao.getText()));
+        lblDistanciaLocal.setText(controller.escolherLocalCompra(compra, txtLocalizacao.getText()));
         btnLocalizar.setEnabled(false);
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnBuscarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadorActionPerformed
-        buscarEntregador();
-        CompraCheckout();
+        controller.buscarEntregador(entregador, compra);
+        controller.CompraCheckout(compra);
         setEntregadorLabels();
         setCompraCheckoutLabels();
     }//GEN-LAST:event_btnBuscarEntregadorActionPerformed

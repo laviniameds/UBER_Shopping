@@ -13,6 +13,21 @@ import model.*;
  */
 public class Controller {
     
+    public void buscarEntregador(Entregador entregador, Compra compra){
+        entregador = new Entregador();
+        compra.setTempo(entregador);
+    }
+    
+    public void CompraCheckout(Compra compra){
+        compra.setComissaoEntregador();
+        compra.setValorTotalCompra();  
+    }
+    
+    public String escolherLocalCompra(Compra compra, String local){
+        compra.setLocal(local);
+        return compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização";
+    }
+    
     public void remProdutoCompra(Compra compra, Integer index){
         compra.removerProduto(compra.getCesta().get(index));
     }
