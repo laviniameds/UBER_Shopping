@@ -5,6 +5,7 @@
  */
 package view.Cliente;
 
+import controller.Controller;
 import model.Compra;
 import model.Produto;
 import model.Usuario;
@@ -24,6 +25,7 @@ public class ShoppingView extends javax.swing.JFrame {
     
     private static Cliente cliente;
     private static Compra compra;
+    private static Controller controler;
     
     public ShoppingView(Cliente cliente, Compra compra) {
         initComponents();
@@ -47,17 +49,6 @@ public class ShoppingView extends javax.swing.JFrame {
         this.txtQuantidade.setText("");
     }
     
-    private Produto addProdutoCompra(String descricao, Integer quantidade, Float preco){
-        Produto p = new Produto();
-        p.setNome(descricao);
-        p.setQuantidade(quantidade);
-        p.setPreco(preco);
-        
-        compra.adicionarProduto(p);
-       
-        return p;
-    }
-    
     private void addProdutoTabela(Produto p){
         DefaultTableModel model = (DefaultTableModel) tbListaProd.getModel();
         Object[] objProduto = {p.getNome(), p.getQuantidade(), p.getPreco()};
@@ -69,11 +60,7 @@ public class ShoppingView extends javax.swing.JFrame {
         int modelIndex = tbListaProd.convertRowIndexToModel(row);
         model.removeRow(modelIndex);
         
-        remProdutoCompra(modelIndex);
-    }
-    
-    private void remProdutoCompra(Integer index){
-        compra.removerProduto(compra.getCesta().get(index));
+        controler.remProdutoCompra(compra, modelIndex);
     }
 
     /**
@@ -270,7 +257,7 @@ public class ShoppingView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddLIstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLIstaActionPerformed
-        Produto p = addProdutoCompra(txtDescricao.getText(), Integer.parseInt(txtQuantidade.getText()), Float.parseFloat(txtPreco.getText()));
+        Produto p = controler.addProdutoCompra(compra, txtDescricao.getText(), Integer.parseInt(txtQuantidade.getText()), Float.parseFloat(txtPreco.getText()));
         addProdutoTabela(p);
         lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));
         limparCampos();

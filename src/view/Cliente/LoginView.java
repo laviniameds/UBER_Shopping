@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package view.Cliente;
-import model.Usuario;
+import controller.Controller;
+import model.Cliente;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Cliente;
@@ -20,18 +21,11 @@ public class LoginView extends javax.swing.JFrame {
      */
     
     private static Cliente cliente;
+    private static Controller controler;
     
     public LoginView(Cliente cliente) {
         initComponents();
         this.cliente = cliente;
-    }
-    
-    public static boolean validarLogin(Usuario usuario, String login, String senha) {
-		
-        if (login.equals(usuario.getLogin()) && senha.equals(usuario.getSenha())) {
-                return true;
-        }
-        return false;
     }
 
     /**
@@ -137,7 +131,7 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(validarLogin(cliente, txtLoginCLiente.getText().toString(), passLoginCliente.getText().toString())){
+        if(controler.validarLogin(cliente, txtLoginCLiente.getText().toString(), passLoginCliente.getText().toString())){
             JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
             new HomeView(cliente).setVisible(true);
             this.setVisible(false);

@@ -152,7 +152,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Voltar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -286,6 +286,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
         lblDistanciaLocal.setText(escolherLocalCompra(txtLocalizacao.getText()));
+        btnLocalizar.setEnabled(false);
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnBuscarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadorActionPerformed

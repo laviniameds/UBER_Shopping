@@ -104,6 +104,8 @@ public class ShoppingDoneView extends javax.swing.JFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         controler.finalizarCompra(cliente, compra, entregador, cbAvaliacao.getSelectedIndex());
+        new HomeView((cliente)).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
