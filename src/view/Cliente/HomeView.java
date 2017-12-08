@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view.Cliente;
+import model.Cliente;
 import model.Usuario;
 
 /**
@@ -16,9 +17,9 @@ public class HomeView extends javax.swing.JFrame {
      * Creates new form HomeView
      */
     
-    private static Usuario cliente;
+    private static Cliente cliente;
     
-    public HomeView(Usuario cliente) {
+    public HomeView(Cliente cliente) {
         initComponents();
         this.cliente = cliente;
         lblNome.setText(cliente.getNome());

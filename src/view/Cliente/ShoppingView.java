@@ -10,6 +10,7 @@ import model.Produto;
 import model.Usuario;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.Cliente;
 
 /**
  *
@@ -21,10 +22,10 @@ public class ShoppingView extends javax.swing.JFrame {
      * Creates new form ShoppingView
      */
     
-    private static Usuario cliente;
+    private static Cliente cliente;
     private static Compra compra;
     
-    public ShoppingView(Usuario cliente, Compra compra) {
+    public ShoppingView(Cliente cliente, Compra compra) {
         initComponents();
         this.cliente = cliente;
         

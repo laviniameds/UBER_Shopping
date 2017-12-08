@@ -5,6 +5,7 @@
  */
 package view.Cliente;
 
+import model.Cliente;
 import model.Compra;
 import model.Entregador;
 import model.Usuario;
@@ -15,14 +16,14 @@ import model.Usuario;
  */
 public class ShoppingCheckoutView extends javax.swing.JFrame {
     
-    private static Usuario cliente;
+    private static Cliente cliente;
     private static Entregador entregador;
     private static Compra compra;
 
     /**
      * Creates new form ShoppingAddProd
      */
-    public ShoppingCheckoutView(Usuario cliente, Compra compra) {
+    public ShoppingCheckoutView(Cliente cliente, Compra compra) {
         initComponents();
         this.cliente = cliente;
         this.compra = compra;
@@ -279,7 +280,8 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        
+        new ShoppingDoneView(cliente, compra, entregador).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed

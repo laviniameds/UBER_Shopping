@@ -7,6 +7,7 @@ package view.Cliente;
 import model.Usuario;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.Cliente;
 
 /**
  *
@@ -18,9 +19,9 @@ public class LoginView extends javax.swing.JFrame {
      * Creates new form LoginView
      */
     
-    private static Usuario cliente;
+    private static Cliente cliente;
     
-    public LoginView(Usuario cliente) {
+    public LoginView(Cliente cliente) {
         initComponents();
         this.cliente = cliente;
     }
