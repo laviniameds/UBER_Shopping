@@ -32,6 +32,13 @@ public class ShoppingDoneView extends javax.swing.JFrame {
         this.compra = compra;
         this.entregador = entregador;
     }
+    
+    private void finalizarCompra(Integer avaliacao) throws ClassNotFoundException{
+        controler.InserirCompraBD(cliente, compra, entregador);
+        cliente.adicionarHistoricoDeCompra(compra);
+        entregador.setAvaliacao(avaliacao+1);
+        controler.AtualizarEntregadorBD(entregador);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +112,7 @@ public class ShoppingDoneView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        controler.finalizarCompra(cliente, compra, entregador, cbAvaliacao.getSelectedIndex());
+            
         try {
             new HomeView((cliente)).setVisible(true);
         } catch (ClassNotFoundException ex) {

@@ -270,7 +270,11 @@ public class ShoppingView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverProdActionPerformed
 
     private void btnFinalizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarListaActionPerformed
-        new ShoppingCheckoutView(cliente, compra).setVisible(true);
+        try {
+            new ShoppingCheckoutView(cliente, compra).setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ShoppingView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarListaActionPerformed
 

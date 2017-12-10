@@ -130,10 +130,27 @@ public class Controller {
         
     }
     
-    public static Compra finalizarCompra(Cliente cliente, Compra compra, Entregador entregador, Integer avaliacao) throws ClassNotFoundException{
-        entregador.setAvaliacao(avaliacao+1);
-        cliente.adicionarHistoricoDeCompra(compra);
+    public static void AtualizarEntregadorBD(Entregador entregador) throws ClassNotFoundException{
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        Connection con = ConectionBD.conectBD();
         
+        String sql = "UPDATE entregador SET avaliacao = ? WHERE login = ?";
+        
+        try{           
+            pst = con.prepareStatement(sql);
+            pst.setString(1, String.valueOf(entregador.getAvaliacao()));
+            pst.setString(2, entregador.getLogin());   
+
+            result = pst.executeQuery();                    
+        }
+        catch(SQLException e){
+            return;            
+        }        
+    }
+    
+    public static void InserirCompraBD(Cliente cliente, Compra compra, Entregador entregador) throws ClassNotFoundException{
+            
         PreparedStatement pst = null;
         ResultSet result = null;
         Connection con = ConectionBD.conectBD();
@@ -152,9 +169,7 @@ public class Controller {
             pst.setString(3, String.valueOf(compra.getValorTotalProdutos()));   
             pst.setString(4, compra.getLocal());   
             pst.setString(5, String.valueOf(date));   
-            result = pst.executeQuery();
-            
-            return Compra;
+            result = pst.executeQuery();          
             
         }
         catch(SQLException e){
