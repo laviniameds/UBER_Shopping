@@ -44,14 +44,35 @@ public class Controller {
         }
     }
     
-    public void buscarEntregador(Entregador entregador, Compra compra){
-        entregador = new Entregador();
-        compra.setTempo(entregador);
-    }
-    
-    public void CompraCheckout(Compra compra){
-        compra.setComissaoEntregador();
-        compra.setValorTotalCompra();  
+    public static Entregador buscarEntregador() throws ClassNotFoundException{
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        Connection con = ConectionBD.conectBD();
+        Entregador entregador = null;
+        
+        String sql = "SELECT * FROM entregador ORDER BY RANDOM() LIMIT 1";
+        
+        try{
+            pst = con.prepareStatement(sql);            
+            result = pst.executeQuery();
+            
+            if(result.next()){
+                entregador = new Entregador();
+
+                entregador.setNome(result.getString("nome"));
+                entregador.setAvaliacao(Float.valueOf(result.getString("avaliacao")));
+                entregador.setLogin(result.getString("login"));
+                entregador.setSenha(result.getString("senha"));
+                entregador.setTempo_servico(Float.valueOf(result.getString("tempo_servico")));
+                
+                return entregador;
+            }
+            else
+                return null;
+        }
+        catch(SQLException e){
+            return null;            
+        }
     }
     
     public String escolherLocalCompra(Compra compra, String local){
@@ -109,7 +130,7 @@ public class Controller {
         
     }
     
-    public static void finalizarCompra(Cliente cliente, Compra compra, Entregador entregador, Integer avaliacao) throws ClassNotFoundException{
+    public static Compra finalizarCompra(Cliente cliente, Compra compra, Entregador entregador, Integer avaliacao) throws ClassNotFoundException{
         entregador.setAvaliacao(avaliacao+1);
         cliente.adicionarHistoricoDeCompra(compra);
         
@@ -132,6 +153,8 @@ public class Controller {
             pst.setString(4, compra.getLocal());   
             pst.setString(5, String.valueOf(date));   
             result = pst.executeQuery();
+            
+            return Compra;
             
         }
         catch(SQLException e){

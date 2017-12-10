@@ -5,13 +5,6 @@ public class Entregador extends Usuario{
 	
 	private double tempoServico;
 	
-	public Entregador() {
-		setAvaliacao(5);
-		setNome("Marcelo Ramón");
-		setTempo_servico(1);
-		setLogin("ramon");
-		setSenha("123");
-	}
 	
 	/* Metodo temporário enquanto não tem Banco de Dados */
 	public String getEntregador(){

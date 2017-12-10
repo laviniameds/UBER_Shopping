@@ -7,6 +7,8 @@ package view.Cliente;
 
 import model.*;
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,15 +24,21 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     /**
      * Creates new form ShoppingAddProd
      */
-    public ShoppingCheckoutView(Cliente cliente, Compra compra) {
+    public ShoppingCheckoutView(Cliente cliente, Compra compra) throws ClassNotFoundException {
         initComponents();
         this.cliente = cliente;
         this.compra = compra;
         
-        controller.buscarEntregador(entregador, compra);
-        controller.CompraCheckout(compra);
+        setEntregador();
         setEntregadorLabels();
         setCompraCheckoutLabels();
+    }
+    
+    private void setEntregador() throws ClassNotFoundException{
+        this.entregador = controller.buscarEntregador();
+        this.compra.setTempo(entregador);
+        this.compra.setComissaoEntregador();
+        this.compra.setValorTotalCompra(); 
     }
     
     private void setEntregadorLabels(){
@@ -274,8 +282,12 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnBuscarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadorActionPerformed
-        controller.buscarEntregador(entregador, compra);
-        controller.CompraCheckout(compra);
+
+        try {
+            setEntregador();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ShoppingCheckoutView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setEntregadorLabels();
         setCompraCheckoutLabels();
     }//GEN-LAST:event_btnBuscarEntregadorActionPerformed
