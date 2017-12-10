@@ -7,42 +7,6 @@
         <Property name="persistenceUnit" type="java.lang.String" value="UBER_ShoppingPU"/>
       </Properties>
     </Component>
-    <Component class="javax.persistence.Query" name="historicoComprasQuery">
-      <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT h FROM HistoricoCompras h"/>
-        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
-          <ComponentRef name="UBER_ShoppingPUEntityManager"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="java.util.List" name="historicoComprasList">
-      <Properties>
-        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
-          <ComponentRef name="historicoComprasQuery"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;controller.HistoricoCompras&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.persistence.Query" name="historicoComprasQuery1">
-      <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT h FROM HistoricoCompras h"/>
-        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
-          <ComponentRef name="UBER_ShoppingPUEntityManager"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="java.util.List" name="historicoComprasList1">
-      <Properties>
-        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
-          <ComponentRef name="historicoComprasQuery1"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;controller.HistoricoCompras&gt;"/>
-      </AuxValues>
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -165,16 +129,6 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTable1">
-              <BindingProperties>
-                <BindingProperty name="elements" source="historicoComprasList1" target="jTable1" targetPath="elements" updateStrategy="0" immediately="true">
-                  <Subbinding sourcePath="${valorCompra}">
-                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Float.class"/>
-                  </Subbinding>
-                  <Subbinding sourcePath="${dataCompra}">
-                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
-                  </Subbinding>
-                </BindingProperty>
-              </BindingProperties>
             </Component>
           </SubComponents>
         </Container>

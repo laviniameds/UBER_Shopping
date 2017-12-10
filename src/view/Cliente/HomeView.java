@@ -34,13 +34,8 @@ public class HomeView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         UBER_ShoppingPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UBER_ShoppingPU").createEntityManager();
-        historicoComprasQuery = java.beans.Beans.isDesignTime() ? null : UBER_ShoppingPUEntityManager.createQuery("SELECT h FROM HistoricoCompras h");
-        historicoComprasList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : historicoComprasQuery.getResultList();
-        historicoComprasQuery1 = java.beans.Beans.isDesignTime() ? null : UBER_ShoppingPUEntityManager.createQuery("SELECT h FROM HistoricoCompras h");
-        historicoComprasList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : historicoComprasQuery1.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -54,16 +49,6 @@ public class HomeView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, historicoComprasList1, jTable1);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${valorCompra}"));
-        columnBinding.setColumnName("Valor Compra");
-        columnBinding.setColumnClass(Float.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${dataCompra}"));
-        columnBinding.setColumnName("Data Compra");
-        columnBinding.setColumnClass(java.util.Date.class);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -163,8 +148,6 @@ public class HomeView extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,10 +193,6 @@ public class HomeView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager UBER_ShoppingPUEntityManager;
-    private java.util.List<controller.HistoricoCompras> historicoComprasList;
-    private java.util.List<controller.HistoricoCompras> historicoComprasList1;
-    private javax.persistence.Query historicoComprasQuery;
-    private javax.persistence.Query historicoComprasQuery1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -225,6 +204,5 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAvaliacao;
     private javax.swing.JLabel lblNome;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
