@@ -10,6 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.*;
 
 /**
@@ -17,6 +20,25 @@ import model.*;
  * @author lavinia
  */
 public class Controller {
+    
+    public static TableModel listarHistoricoCompras(String login) throws ClassNotFoundException{
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        Connection con = ConectionBD.conectBD();
+        
+        String sql = "SELECT * from compra where login_cliente = ?";
+        
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setString(1, login);        
+            result = pst.executeQuery();
+            
+            return DbUtils.resultSetToTableModel(result);
+        }
+        catch(SQLException e){
+            return null;            
+        }
+    }
     
     public void buscarEntregador(Entregador entregador, Compra compra){
         entregador = new Entregador();

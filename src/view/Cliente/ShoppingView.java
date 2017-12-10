@@ -6,6 +6,8 @@
 package view.Cliente;
 
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Compra;
 import model.Produto;
 import model.Usuario;
@@ -274,7 +276,11 @@ public class ShoppingView extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
-        new HomeView(cliente).setVisible(true);
+        try {
+            new HomeView(cliente).setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ShoppingView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

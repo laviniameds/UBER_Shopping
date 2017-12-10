@@ -6,6 +6,7 @@
 package view.Cliente;
 import model.Cliente;
 import model.Usuario;
+import controller.*;
 
 /**
  *
@@ -18,12 +19,14 @@ public class HomeView extends javax.swing.JFrame {
      */
     
     private static Cliente cliente;
+    private static Controller controller;
     
-    public HomeView(Cliente cliente) {
+    public HomeView(Cliente cliente) throws ClassNotFoundException {
         initComponents();
         this.cliente = cliente;
         lblNome.setText(cliente.getNome());
         lblAvaliacao.setText(String.valueOf(cliente.getAvaliacao()));
+        populatTabelaCompras();
     }
 
     /**
@@ -38,7 +41,7 @@ public class HomeView extends javax.swing.JFrame {
         UBER_ShoppingPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UBER_ShoppingPU").createEntityManager();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbCompras = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -50,7 +53,7 @@ public class HomeView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbCompras);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -155,7 +158,11 @@ public class HomeView extends javax.swing.JFrame {
         new ShoppingView(cliente, null).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    private void populatTabelaCompras() throws ClassNotFoundException{
+        tbCompras.setModel(controller.listarHistoricoCompras(cliente.getLogin()));     
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -201,8 +208,8 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAvaliacao;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JTable tbCompras;
     // End of variables declaration//GEN-END:variables
 }

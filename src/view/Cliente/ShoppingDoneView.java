@@ -5,6 +5,8 @@
  */
 package view.Cliente;
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.*;
 
 /**
@@ -104,7 +106,11 @@ public class ShoppingDoneView extends javax.swing.JFrame {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         controler.finalizarCompra(cliente, compra, entregador, cbAvaliacao.getSelectedIndex());
-        new HomeView((cliente)).setVisible(true);
+        try {
+            new HomeView((cliente)).setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ShoppingDoneView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
