@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -29,8 +28,7 @@ public class Controller {
         ResultSet result = null;
         Connection con = ConectionBD.conectBD();
         
-        String sql = "SELECT valor, local, data"
-                + " from compra where login_cliente = ?";
+        String sql = "SELECT valor, local, data from compra where login_cliente = ?";
         
         try{
             pst = con.prepareStatement(sql);
@@ -75,22 +73,21 @@ public class Controller {
         }
     }
     
-    public String escolherLocalCompra(Compra compra, String local){
+    public static String escolherLocalCompra(Compra compra, String local){
         compra.setLocal(local);
         return compra.getLocal() + " está a " + compra.getLocalizacao().getDistancia() + " da sua localização";
     }
     
-    public void remProdutoCompra(Compra compra, Integer index){
+    public static Compra remProdutoCompra(Compra compra, Integer index){
         compra.removerProduto(compra.getCesta().get(index));
+        return compra;
     }
     
-    public Produto addProdutoCompra(Compra compra, String descricao, Integer quantidade, Float preco){
+    public static Produto addProdutoCompra(Compra compra, String descricao, Integer quantidade, Float preco){
         Produto p = new Produto();
         p.setNome(descricao);
         p.setQuantidade(quantidade);
         p.setPreco(preco);
-
-        compra.adicionarProduto(p);
 
         return p;
     }
@@ -139,7 +136,7 @@ public class Controller {
         
         try{           
             pst = con.prepareStatement(sql);
-            pst.setString(1, String.valueOf(entregador.getAvaliacao()));
+            pst.setFloat(1, Float.valueOf(String.valueOf(entregador.getAvaliacao())));
             pst.setString(2, entregador.getLogin());   
 
             result = pst.executeQuery();                    
@@ -152,28 +149,24 @@ public class Controller {
     public static void InserirCompraBD(Cliente cliente, Compra compra, Entregador entregador) throws ClassNotFoundException{
             
         PreparedStatement pst = null;
-        ResultSet result = null;
         Connection con = ConectionBD.conectBD();
         
         String sql = "INSERT INTO compra(login_cliente, login_entregador, valor, local, data) values (?, ?, ?, ?, ?)";
         
-        try{
-
-            Calendar calendar = Calendar.getInstance();
-            java.util.Date currentDate = calendar.getTime();
-            java.sql.Date date = new java.sql.Date(currentDate.getTime());
-            
+        try{           
             pst = con.prepareStatement(sql);
             pst.setString(1, cliente.getLogin());
             pst.setString(2, entregador.getLogin());   
-            pst.setString(3, String.valueOf(compra.getValorTotalProdutos()));   
+            pst.setFloat(3, Float.valueOf(String.valueOf(compra.getValorTotalProdutos())));   
             pst.setString(4, compra.getLocal());   
-            pst.setString(5, String.valueOf(date));   
-            result = pst.executeQuery();          
+            pst.setDate(5, new java.sql.Date(System.currentTimeMillis()));  
+            
+            pst.execute();      
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
             
         }
         catch(SQLException e){
-            return;            
+            JOptionPane.showMessageDialog(null, e);         
         }        
     }
 }

@@ -28,6 +28,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
         initComponents();
         this.cliente = cliente;
         this.compra = compra;
+        this.controller = new Controller();
         
         setEntregador();
         setEntregadorLabels();

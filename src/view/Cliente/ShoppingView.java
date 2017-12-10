@@ -27,11 +27,12 @@ public class ShoppingView extends javax.swing.JFrame {
     
     private static Cliente cliente;
     private static Compra compra;
-    private static Controller controler;
+    private static Controller controller;
     
     public ShoppingView(Cliente cliente, Compra compra) {
         initComponents();
         this.cliente = cliente;
+        this.controller = new Controller();
         
         if(compra == null)
            this.compra = new Compra();
@@ -52,6 +53,7 @@ public class ShoppingView extends javax.swing.JFrame {
     }
     
     private void addProdutoTabela(Produto p){
+        compra.adicionarProduto(p);
         DefaultTableModel model = (DefaultTableModel) tbListaProd.getModel();
         Object[] objProduto = {p.getNome(), p.getQuantidade(), p.getPreco()};
         model.addRow(objProduto);
@@ -62,7 +64,7 @@ public class ShoppingView extends javax.swing.JFrame {
         int modelIndex = tbListaProd.convertRowIndexToModel(row);
         model.removeRow(modelIndex);
         
-        controler.remProdutoCompra(compra, modelIndex);
+        this.compra = controller.remProdutoCompra(compra, modelIndex);
     }
 
     /**
@@ -259,8 +261,7 @@ public class ShoppingView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddLIstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLIstaActionPerformed
-        Produto p = controler.addProdutoCompra(compra, txtDescricao.getText(), Integer.parseInt(txtQuantidade.getText()), Float.parseFloat(txtPreco.getText()));
-        addProdutoTabela(p);
+        addProdutoTabela(controller.addProdutoCompra(compra, txtDescricao.getText(), Integer.parseInt(txtQuantidade.getText()), Float.parseFloat(txtPreco.getText())));
         lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));
         limparCampos();
     }//GEN-LAST:event_btnAddLIstaActionPerformed

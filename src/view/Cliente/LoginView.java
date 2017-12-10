@@ -24,15 +24,16 @@ public class LoginView extends javax.swing.JFrame {
      */
     
     private static Cliente cliente;
-    private static Controller con;
+    private static Controller controller;
     
     public LoginView(Cliente cliente) {
         initComponents();
         this.cliente = null;
+        this.controller = new Controller();
     }
     
     private void Logar(String login, String senha) throws ClassNotFoundException{
-        this.cliente = con.validarLoginCliente(login, senha);
+        this.cliente = controller.validarLoginCliente(login, senha);
         if(cliente != null){
             JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
             new HomeView(cliente).setVisible(true);

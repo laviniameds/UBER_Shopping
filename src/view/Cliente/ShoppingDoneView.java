@@ -19,7 +19,7 @@ public class ShoppingDoneView extends javax.swing.JFrame {
      * Creates new form ShoppingDoneView
      */
     
-    private static Controller controler;
+    private static Controller controller;
     private static Cliente cliente;
     private static Entregador entregador;
     private static Compra compra;
@@ -27,17 +27,17 @@ public class ShoppingDoneView extends javax.swing.JFrame {
     public ShoppingDoneView(Cliente cliente, Compra compra, Entregador entregador) {
         initComponents();
         
-        this.controler = new Controller();
+        this.controller = new Controller();
         this.cliente = cliente;
         this.compra = compra;
         this.entregador = entregador;
     }
     
     private void finalizarCompra(Integer avaliacao) throws ClassNotFoundException{
-        controler.InserirCompraBD(cliente, compra, entregador);
+        controller.InserirCompraBD(cliente, compra, entregador);
         cliente.adicionarHistoricoDeCompra(compra);
         entregador.setAvaliacao(avaliacao+1);
-        controler.AtualizarEntregadorBD(entregador);
+        controller.AtualizarEntregadorBD(entregador);
     }
 
     /**
@@ -114,6 +114,7 @@ public class ShoppingDoneView extends javax.swing.JFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
             
         try {
+            finalizarCompra(cbAvaliacao.getSelectedIndex());
             new HomeView((cliente)).setVisible(true);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ShoppingDoneView.class.getName()).log(Level.SEVERE, null, ex);

@@ -24,6 +24,8 @@ public class HomeView extends javax.swing.JFrame {
     public HomeView(Cliente cliente) throws ClassNotFoundException {
         initComponents();
         this.cliente = cliente;
+        this.controller = new Controller();
+        
         lblNome.setText(cliente.getNome());
         lblAvaliacao.setText(String.valueOf(cliente.getAvaliacao()));
         populatTabelaCompras();
