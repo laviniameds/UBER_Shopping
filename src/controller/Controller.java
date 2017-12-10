@@ -5,6 +5,11 @@
  */
 package controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import model.*;
 
 /**
@@ -43,10 +48,39 @@ public class Controller {
         return p;
     }
     
-    public static boolean validarLogin(Usuario usuario, String login, String senha) {
-        if (login.equals(usuario.getLogin()) && senha.equals(usuario.getSenha())) 
-                return true;    
-        return false;
+    public static Cliente validarLoginCliente(String login, String senha) throws ClassNotFoundException {
+        
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        Connection con = ConectionBD.conectBD();
+        Cliente cliente = null;
+        
+        String sql = "SELECT * from cliente where login = ? and senha = ?";
+        
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setString(1, login);
+            pst.setString(2, senha);
+            
+            result = pst.executeQuery();
+            
+            if(result.next()){
+                cliente = new Cliente();
+
+                cliente.setLogin(login);
+                cliente.setAvaliacao(Float.valueOf(result.getString("avaliacao")));
+                cliente.setNome(result.getString("nome"));
+                cliente.setSenha(senha);
+                
+                return cliente;
+            }
+            else
+                return null;
+        }
+        catch(SQLException e){
+            return null;            
+        }
+        
     }
     
     public void finalizarCompra(Cliente cliente, Compra compra, Entregador entregador, Integer avaliacao){

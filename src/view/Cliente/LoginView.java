@@ -5,10 +5,13 @@
  */
 package view.Cliente;
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Cliente;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import controller.*;
 
 /**
  *
@@ -21,11 +24,23 @@ public class LoginView extends javax.swing.JFrame {
      */
     
     private static Cliente cliente;
-    private static Controller controler;
+    private static Controller con;
     
     public LoginView(Cliente cliente) {
         initComponents();
-        this.cliente = cliente;
+        this.cliente = null;
+    }
+    
+    private void Logar(String login, String senha) throws ClassNotFoundException{
+        this.cliente = con.validarLoginCliente(login, senha);
+        if(cliente != null){
+            JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
+            new HomeView(cliente).setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos");
+        }
     }
 
     /**
@@ -131,13 +146,11 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(controler.validarLogin(cliente, txtLoginCLiente.getText().toString(), passLoginCliente.getText().toString())){
-            JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
-            new HomeView(cliente).setVisible(true);
-            this.setVisible(false);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos");
+ 
+        try {
+            Logar(txtLoginCLiente.getText(), passLoginCliente.getText());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
