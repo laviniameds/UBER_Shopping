@@ -42,7 +42,7 @@ public class Controller {
         }
     }
     
-    public static Entregador buscarEntregador() throws ClassNotFoundException{
+    public static Entregador buscarEntregadorRandomico() throws ClassNotFoundException{
         PreparedStatement pst = null;
         ResultSet result = null;
         Connection con = ConectionBD.conectBD();
@@ -112,6 +112,7 @@ public class Controller {
                 cliente = new Cliente();
 
                 cliente.setLogin(login);
+                cliente.setContadorAvaliacao(result.getInt("contador_avaliacao"));
                 cliente.setAvaliacao(Float.valueOf(result.getString("avaliacao")));
                 cliente.setNome(result.getString("nome"));
                 cliente.setSenha(senha);
@@ -127,19 +128,32 @@ public class Controller {
         
     }
     
-    public static void AtualizarEntregadorBD(Entregador entregador) throws ClassNotFoundException{
-        PreparedStatement pst = null;
-        ResultSet result = null;
+    public static void AtualizarEntregadorBD(Entregador entregador, Integer avaliacao) throws ClassNotFoundException{
+        PreparedStatement pst2 = null;
+        ResultSet result2 = null;
+        PreparedStatement pst1 = null;
+        ResultSet result1 = null;
         Connection con = ConectionBD.conectBD();
         
-        String sql = "UPDATE entregador SET avaliacao = ? WHERE login = ?";
-        
-        try{           
-            pst = con.prepareStatement(sql);
-            pst.setFloat(1, Float.valueOf(String.valueOf(entregador.getAvaliacao())));
-            pst.setString(2, entregador.getLogin());   
+        String sql1 = "SELECT contador_avaliacao FROM entregador WHERE login = ?";        
+        String sql2 = "UPDATE entregador SET avaliacao = ?, contador_avaliacao = ? WHERE login = ?";
+                
+        try{     
+            pst1 = con.prepareStatement(sql1);
+            pst1.setString(1, entregador.getLogin());
+            result1 = pst1.executeQuery();
+            
+            if(result1.next()){
+                entregador.setContadorAvaliacao(result1.getInt("contador_avaliacao")+1);
+            }
+            
+            entregador.setAvaliacao(avaliacao);
+            
+            pst2 = con.prepareStatement(sql2);
+            pst2.setFloat(1, Float.valueOf(String.valueOf(entregador.getAvaliacao())));
+            pst2.setString(2, entregador.getLogin());   
 
-            result = pst.executeQuery();                    
+            result2 = pst2.executeQuery();                    
         }
         catch(SQLException e){
             return;            

@@ -36,7 +36,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }
     
     private void setEntregador() throws ClassNotFoundException{
-        this.entregador = controller.buscarEntregador();
+        this.entregador = controller.buscarEntregadorRandomico();
         this.compra.setTempo(entregador);
         this.compra.setComissaoEntregador();
         this.compra.setValorTotalCompra(); 

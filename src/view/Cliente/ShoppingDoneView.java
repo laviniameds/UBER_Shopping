@@ -36,8 +36,7 @@ public class ShoppingDoneView extends javax.swing.JFrame {
     private void finalizarCompra(Integer avaliacao) throws ClassNotFoundException{
         controller.InserirCompraBD(cliente, compra, entregador);
         cliente.adicionarHistoricoDeCompra(compra);
-        entregador.setAvaliacao(avaliacao+1);
-        controller.AtualizarEntregadorBD(entregador);
+        controller.AtualizarEntregadorBD(entregador, avaliacao);
     }
 
     /**

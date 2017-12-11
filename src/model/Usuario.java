@@ -33,10 +33,17 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+        
+        public void setContadorAvaliacao(Integer contadorAvaliacao){
+            this.contadorAvaliacao = contadorAvaliacao;
+        }
+        
+        public Integer getContadorAvaliacao(){
+            return this.contadorAvaliacao;
+        }
 
 	public void setAvaliacao(double avaliacao) {
 		double avaliacao_aux = this.avaliacao * contadorAvaliacao;
-		contadorAvaliacao++;
 		this.avaliacao = (avaliacao+avaliacao_aux)/contadorAvaliacao;
 	}
 	
