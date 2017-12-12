@@ -130,7 +130,6 @@ public class Controller {
     
     public static void AtualizarEntregadorBD(Entregador entregador, Integer avaliacao) throws ClassNotFoundException{
         PreparedStatement pst2 = null;
-        ResultSet result2 = null;
         PreparedStatement pst1 = null;
         ResultSet result1 = null;
         Connection con = ConectionBD.conectBD();
@@ -151,9 +150,12 @@ public class Controller {
             
             pst2 = con.prepareStatement(sql2);
             pst2.setFloat(1, Float.valueOf(String.valueOf(entregador.getAvaliacao())));
-            pst2.setString(2, entregador.getLogin());   
+            pst2.setInt(2, entregador.getContadorAvaliacao());
+            pst2.setString(3, entregador.getLogin());   
 
-            result2 = pst2.executeQuery();                    
+            pst2.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Entregador sucesso!");                  
         }
         catch(SQLException e){
             return;            

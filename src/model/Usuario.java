@@ -44,7 +44,7 @@ public class Usuario {
 
 	public void setAvaliacao(double avaliacao) {
 		double avaliacao_aux = this.avaliacao * contadorAvaliacao;
-		this.avaliacao = (avaliacao+avaliacao_aux)/contadorAvaliacao;
+		this.avaliacao = (avaliacao+avaliacao_aux)/(contadorAvaliacao+1);
 	}
 	
 	public double getAvaliacao() {
