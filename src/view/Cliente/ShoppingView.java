@@ -5,7 +5,7 @@
  */
 package view.Cliente;
 
-import controller.Controller;
+import controller.ControllerCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Compra;
@@ -27,12 +27,12 @@ public class ShoppingView extends javax.swing.JFrame {
     
     private static Cliente cliente;
     private static Compra compra;
-    private static Controller controller;
+    private static ControllerCliente controller;
     
     public ShoppingView(Cliente cliente, Compra compra) {
         initComponents();
         this.cliente = cliente;
-        this.controller = new Controller();
+        this.controller = new ControllerCliente();
         
         if(compra == null)
            this.compra = new Compra();

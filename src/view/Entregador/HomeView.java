@@ -5,11 +5,9 @@
  */
 package view.Entregador;
 
-import controller.Controller;
+import controller.ControllerEntregador;
 import java.awt.event.WindowEvent;
-import model.Cliente;
 import model.Entregador;
-import view.Cliente.ShoppingView;
 
 /**
  *
@@ -18,7 +16,7 @@ import view.Cliente.ShoppingView;
 public class HomeView extends javax.swing.JFrame {
 
     private static Entregador entregador;
-    private static Controller controller;
+    private static ControllerEntregador controller;
     
     /**
      * Creates new form HomeView
@@ -27,7 +25,7 @@ public class HomeView extends javax.swing.JFrame {
         initComponents();
         
         this.entregador = entregador;
-        this.controller = new Controller();
+        this.controller = new ControllerEntregador();
         
         lblNome.setText(entregador.getNome());
         lblAvaliacao.setText(String.valueOf(entregador.getAvaliacao()));

@@ -5,7 +5,8 @@
  */
 package view.Entregador;
 
-import controller.Controller;
+import controller.ControllerCliente;
+import controller.ControllerEntregador;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,12 +24,12 @@ public class LoginView extends javax.swing.JFrame {
      */
     
     private static Entregador entregador;
-    private static Controller controller;
+    private static ControllerEntregador controller;
     
     public LoginView() {
         initComponents();
         this.entregador = null;
-        this.controller = new Controller();
+        this.controller = new ControllerEntregador();
     }
     
         private void Logar(String login, String senha) throws ClassNotFoundException{

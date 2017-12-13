@@ -20,12 +20,12 @@ public class HomeView extends javax.swing.JFrame {
      */
     
     private static Cliente cliente;
-    private static Controller controller;
+    private static ControllerCliente controller;
     
     public HomeView(Cliente cliente) throws ClassNotFoundException {
         initComponents();
         this.cliente = cliente;
-        this.controller = new Controller();
+        this.controller = new ControllerCliente();
         
         lblNome.setText(cliente.getNome());
         lblAvaliacao.setText(String.valueOf(cliente.getAvaliacao()));

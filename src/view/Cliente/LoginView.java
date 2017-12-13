@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package view.Cliente;
-import controller.Controller;
+import controller.ControllerCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cliente;
@@ -24,12 +24,12 @@ public class LoginView extends javax.swing.JFrame {
      */
     
     private static Cliente cliente;
-    private static Controller controller;
+    private static ControllerCliente controller;
     
     public LoginView(Cliente cliente) {
         initComponents();
         this.cliente = null;
-        this.controller = new Controller();
+        this.controller = new ControllerCliente();
     }
     
     private void Logar(String login, String senha) throws ClassNotFoundException{

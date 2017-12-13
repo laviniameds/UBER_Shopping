@@ -6,7 +6,7 @@
 package view.Cliente;
 
 import model.*;
-import controller.Controller;
+import controller.ControllerCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     private static Cliente cliente;
     private static Entregador entregador;
     private static Compra compra;
-    private static Controller controller;
+    private static ControllerCliente controller;
 
     /**
      * Creates new form ShoppingAddProd
@@ -28,7 +28,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
         initComponents();
         this.cliente = cliente;
         this.compra = compra;
-        this.controller = new Controller();
+        this.controller = new ControllerCliente();
         
         setEntregador();
         setEntregadorLabels();

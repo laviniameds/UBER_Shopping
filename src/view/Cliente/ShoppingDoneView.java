@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package view.Cliente;
-import controller.Controller;
+import controller.ControllerCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.*;
@@ -19,7 +19,7 @@ public class ShoppingDoneView extends javax.swing.JFrame {
      * Creates new form ShoppingDoneView
      */
     
-    private static Controller controller;
+    private static ControllerCliente controller;
     private static Cliente cliente;
     private static Entregador entregador;
     private static Compra compra;
@@ -27,7 +27,7 @@ public class ShoppingDoneView extends javax.swing.JFrame {
     public ShoppingDoneView(Cliente cliente, Compra compra, Entregador entregador) {
         initComponents();
         
-        this.controller = new Controller();
+        this.controller = new ControllerCliente();
         this.cliente = cliente;
         this.compra = compra;
         this.entregador = entregador;
