@@ -42,6 +42,25 @@ public class Controller {
         }
     }
     
+    public static TableModel listarHistoricoEntregas(String login) throws ClassNotFoundException{
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        Connection con = ConectionBD.conectBD();
+        
+        String sql = "SELECT valor, local, data from compra where login_entregador = ?";
+        
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setString(1, login);        
+            result = pst.executeQuery();
+            
+            return DbUtils.resultSetToTableModel(result);
+        }
+        catch(SQLException e){
+            return null;            
+        }
+    }
+    
     public static Entregador buscarEntregadorRandomico() throws ClassNotFoundException{
         PreparedStatement pst = null;
         ResultSet result = null;
@@ -126,6 +145,40 @@ public class Controller {
             return null;            
         }
         
+    }
+    
+    public static Entregador validarLoginEntregador(String login, String senha) throws ClassNotFoundException{
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        Connection con = ConectionBD.conectBD();
+        Entregador entregador = null;
+        
+        String sql = "SELECT * from entregador where login = ? and senha = ?";
+        
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setString(1, login);
+            pst.setString(2, senha);
+            
+            result = pst.executeQuery();
+            
+            if(result.next()){
+                entregador = new Entregador();
+
+                entregador.setLogin(login);
+                entregador.setContadorAvaliacao(result.getInt("contador_avaliacao"));
+                entregador.setAvaliacao(Float.valueOf(result.getString("avaliacao")));
+                entregador.setNome(result.getString("nome"));
+                entregador.setSenha(senha);
+                
+                return entregador;
+            }
+            else
+                return null;
+        }
+        catch(SQLException e){
+            return null;            
+        }
     }
     
     public static void AtualizarEntregadorBD(Entregador entregador, Integer avaliacao) throws ClassNotFoundException{
