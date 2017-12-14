@@ -5,6 +5,9 @@
  */
 package view.Entregador;
 
+import controller.ControllerCliente;
+import controller.ControllerEntregador;
+import model.Cliente;
 import model.Compra;
 import model.Entregador;
 
@@ -17,8 +20,20 @@ public class DeliveryView extends javax.swing.JFrame {
     /**
      * Creates new form DeliveryView
      */
-    public DeliveryView(Entregador entregador, Compra compra) {
+    
+    private static Cliente cliente;
+    private static Entregador entregador;
+    private static Compra compra;
+    private static ControllerEntregador controller;
+    
+    public DeliveryView(Entregador entregador) {
         initComponents();
+        
+        this.entregador = entregador;
+    }
+    
+    public void setEntregaLabels(){
+        
     }
 
     /**
@@ -39,11 +54,10 @@ public class DeliveryView extends javax.swing.JFrame {
         lblNome = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblAvaliacao = new javax.swing.JLabel();
-        btnAceitarEntrega = new javax.swing.JButton();
+        btnEntregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        lblDistanciaLocal = new javax.swing.JLabel();
-        btnGerarNovaEntrega = new javax.swing.JButton();
+        lblLocal = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
 
@@ -53,22 +67,22 @@ public class DeliveryView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dados do Comprador");
+        jLabel1.setText("Dados da Compra");
 
         jLabel2.setText("Lista dos Produtos");
 
-        jLabel3.setText("Nome:");
+        jLabel3.setText("Nome do comprador:");
 
         lblNome.setText("<nome>");
 
-        jLabel5.setText("Avaliação");
+        jLabel5.setText("Avaliação do comprador:");
 
         lblAvaliacao.setText("<avaliacao>");
 
-        btnAceitarEntrega.setText("Aceitar Entrega");
-        btnAceitarEntrega.addActionListener(new java.awt.event.ActionListener() {
+        btnEntregar.setText("Entregar");
+        btnEntregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceitarEntregaActionPerformed(evt);
+                btnEntregarActionPerformed(evt);
             }
         });
 
@@ -79,16 +93,9 @@ public class DeliveryView extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Distância do seu local:");
+        jLabel4.setText("Local da compra:");
 
-        lblDistanciaLocal.setText("<distancia>");
-
-        btnGerarNovaEntrega.setText("Nova Entrega");
-        btnGerarNovaEntrega.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerarNovaEntregaActionPerformed(evt);
-            }
-        });
+        lblLocal.setText("<local>");
 
         jLabel6.setText("Total: R$");
 
@@ -113,14 +120,11 @@ public class DeliveryView extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(lblAvaliacao)
                             .addComponent(jLabel4)
-                            .addComponent(lblDistanciaLocal)
+                            .addComponent(lblLocal)
                             .addComponent(btnCancelar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnGerarNovaEntrega)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAceitarEntrega))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEntregar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -150,7 +154,7 @@ public class DeliveryView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblDistanciaLocal))
+                        .addComponent(lblLocal))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -159,8 +163,7 @@ public class DeliveryView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnGerarNovaEntrega)
-                    .addComponent(btnAceitarEntrega))
+                    .addComponent(btnEntregar))
                 .addContainerGap())
         );
 
@@ -184,17 +187,13 @@ public class DeliveryView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceitarEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarEntregaActionPerformed
+    private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
 
-    }//GEN-LAST:event_btnAceitarEntregaActionPerformed
+    }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnGerarNovaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarNovaEntregaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGerarNovaEntregaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,9 +231,8 @@ public class DeliveryView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceitarEntrega;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGerarNovaEntrega;
+    private javax.swing.JButton btnEntregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -245,7 +243,7 @@ public class DeliveryView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAvaliacao;
-    private javax.swing.JLabel lblDistanciaLocal;
+    private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables

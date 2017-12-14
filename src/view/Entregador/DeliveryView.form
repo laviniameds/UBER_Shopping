@@ -62,16 +62,12 @@
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblAvaliacao" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDistanciaLocal" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblLocal" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnGerarNovaEntrega" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnAceitarEntrega" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnEntregar" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="1" min="-2" pref="553" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -108,7 +104,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblDistanciaLocal" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblLocal" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
                   </Group>
@@ -120,8 +116,7 @@
                   <EmptySpace pref="50" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnGerarNovaEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAceitarEntrega" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEntregar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -146,7 +141,7 @@
               <Font name="Ubuntu" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Dados do Comprador"/>
+            <Property name="text" type="java.lang.String" value="Dados da Compra"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -156,7 +151,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome:"/>
+            <Property name="text" type="java.lang.String" value="Nome do comprador:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNome">
@@ -166,7 +161,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Avalia&#xe7;&#xe3;o"/>
+            <Property name="text" type="java.lang.String" value="Avalia&#xe7;&#xe3;o do comprador:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAvaliacao">
@@ -174,12 +169,12 @@
             <Property name="text" type="java.lang.String" value="&lt;avaliacao&gt;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAceitarEntrega">
+        <Component class="javax.swing.JButton" name="btnEntregar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aceitar Entrega"/>
+            <Property name="text" type="java.lang.String" value="Entregar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceitarEntregaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEntregarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
@@ -192,21 +187,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Dist&#xe2;ncia do seu local:"/>
+            <Property name="text" type="java.lang.String" value="Local da compra:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblDistanciaLocal">
+        <Component class="javax.swing.JLabel" name="lblLocal">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;distancia&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;local&gt;"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnGerarNovaEntrega">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nova Entrega"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerarNovaEntregaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>

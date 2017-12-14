@@ -27,6 +27,10 @@ public class Compra {
 		produtos.add(produto);
 		this.valorTotalProdutos += (produto.getPreco() * produto.getQuantidade());
 	}
+        
+        public void setValorTotalProdutos(double valor){
+            this.valorTotalProdutos = valor;
+        }
 	
 	public void removerProduto(Produto produto){
 		if(this.produtos.contains(produto)){
@@ -60,7 +64,7 @@ public class Compra {
 	}
 
 	public double getValorTotalProdutos() {
-		return valorTotalProdutos;
+		return this.valorTotalProdutos;
 	}
 	
 	public void setValorTotalCompra(){
@@ -87,5 +91,13 @@ public class Compra {
 	public void setLocal(String local) {
 		this.local = local;
 	}
+
+        public Date getData() {
+            return data;
+        }
+
+        public void setData(Date data) {
+            this.data = data;
+        }
 	
 }

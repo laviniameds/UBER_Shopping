@@ -28,7 +28,7 @@ public class ControllerCliente {
         ResultSet result = null;
         Connection con = ConectionBD.conectBD();
         
-        String sql = "SELECT valor, local, data from compra where login_cliente = ?";
+        String sql = "SELECT valor, local, data from compra where login_cliente = ? and pendente = 'false'";
         
         try{
             pst = con.prepareStatement(sql);

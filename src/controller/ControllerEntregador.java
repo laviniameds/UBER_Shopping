@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.TableModel;
 import model.Cliente;
+import model.Compra;
 import model.Entregador;
 import net.proteanit.sql.DbUtils;
 
@@ -20,12 +21,12 @@ import net.proteanit.sql.DbUtils;
  */
 public class ControllerEntregador {
     
-        public static TableModel listarHistoricoEntregas(String login) throws ClassNotFoundException{
+        public static TableModel listarEntregasPendentes(String login) throws ClassNotFoundException{
         PreparedStatement pst = null;
         ResultSet result = null;
         Connection con = ConectionBD.conectBD();
         
-        String sql = "SELECT valor, local, data from compra where login_entregador = ?";
+        String sql = "SELECT valor, local, data from compra where login_entregador = ? and pendente = 'true'";
         
         try{
             pst = con.prepareStatement(sql);
@@ -73,27 +74,27 @@ public class ControllerEntregador {
         }
     }
         
-        public static Cliente buscarClienteRandomico() throws ClassNotFoundException{
+        public static Compra buscarCompraRandomica(Entregador entregador) throws ClassNotFoundException{
             PreparedStatement pst = null;
             ResultSet result = null;
             Connection con = ConectionBD.conectBD();
-            Cliente cliente = null;
+            Compra compra = null;
 
-            String sql = "SELECT * FROM cliente ORDER BY RANDOM() LIMIT 1";
+            String sql = "SELECT * FROM compra where login_entregador = ? and pendente = 'true' ORDER BY RANDOM() LIMIT 1";
 
             try{
-                pst = con.prepareStatement(sql);            
+                pst = con.prepareStatement(sql); 
+                pst.setString(1, entregador.getLogin());
                 result = pst.executeQuery();
 
                 if(result.next()){
-                    cliente = new Cliente();
+                    compra = new Compra();
 
-                    cliente.setNome(result.getString("nome"));
-                    cliente.setAvaliacao(Float.valueOf(result.getString("avaliacao")));
-                    cliente.setLogin(result.getString("login"));
-                    cliente.setSenha(result.getString("senha"));
+                    compra.setLocal(result.getString("local"));
+                    compra.setValorTotalProdutos(result.getInt("valor"));   
+                    compra.setData(result.getDate("data"));
 
-                    return cliente;
+                    return compra;
                 }
                 else
                     return null;

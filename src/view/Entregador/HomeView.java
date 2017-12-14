@@ -47,7 +47,7 @@ public class HomeView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         lblAvaliacao = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
-        btnNovaCompra = new javax.swing.JButton();
+        btnFazerEntrega = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbCompras = new javax.swing.JTable();
@@ -73,14 +73,14 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
-        btnNovaCompra.setText("Nova Entrega");
-        btnNovaCompra.addActionListener(new java.awt.event.ActionListener() {
+        btnFazerEntrega.setText("Fazer Entrega");
+        btnFazerEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovaCompraActionPerformed(evt);
+                btnFazerEntregaActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Histórico de Entregas");
+        jLabel2.setText("Entregas Pendentes");
 
         jScrollPane1.setViewportView(tbCompras);
 
@@ -92,20 +92,12 @@ public class HomeView extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNovaCompra)
-                        .addGap(253, 253, 253))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(lblNome)
-                                    .addComponent(jLabel5)
-                                    .addComponent(lblAvaliacao))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(lblNome)
+                            .addComponent(jLabel5)
+                            .addComponent(lblAvaliacao))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(267, 267, 267)
@@ -114,7 +106,12 @@ public class HomeView extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFazerEntrega)
+                        .addGap(236, 236, 236))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,8 +135,8 @@ public class HomeView extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovaCompra)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFazerEntrega)
                     .addComponent(btnSair))
                 .addGap(45, 45, 45))
         );
@@ -147,17 +144,17 @@ public class HomeView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNovaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaCompraActionPerformed
-        new DeliveryView(entregador, null).setVisible(true);
+    private void btnFazerEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFazerEntregaActionPerformed
+        new DeliveryView(entregador).setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnNovaCompraActionPerformed
+    }//GEN-LAST:event_btnFazerEntregaActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void populatTabelaCompras() throws ClassNotFoundException{
-        tbCompras.setModel(controller.listarHistoricoEntregas(entregador.getLogin()));     
+        tbCompras.setModel(controller.listarEntregasPendentes(entregador.getLogin()));     
     }
     
     /**
@@ -196,7 +193,7 @@ public class HomeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNovaCompra;
+    private javax.swing.JButton btnFazerEntrega;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
