@@ -3,15 +3,7 @@ package model;
 import java.util.Scanner;
 
 
-public class Main {  
-    
-        public static void main(String[] args) {
-            
-           Cliente c = new Cliente();
-           new view.Cliente.LoginView(c).setVisible(true);
-                       
-        } 
-               
+public class Main {               
         
 	/*public static int menuEntregador(Scanner sc, Entregador entregador, Compra compra){	
 		

@@ -26,7 +26,7 @@ public class LoginView extends javax.swing.JFrame {
     private static Cliente cliente;
     private static ControllerCliente controller;
     
-    public LoginView(Cliente cliente) {
+    public LoginView() {
         initComponents();
         this.cliente = null;
         this.controller = new ControllerCliente();
