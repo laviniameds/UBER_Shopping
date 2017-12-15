@@ -193,5 +193,38 @@ public class ControllerEntregador {
                 return;            
             }   
         }
+        
+        public static void atualizarClienteBD(Cliente cliente, Integer avaliacao) throws ClassNotFoundException{
+            PreparedStatement pst2 = null;
+            PreparedStatement pst1 = null;
+            ResultSet result1 = null;
+            Connection con = ConectionBD.conectBD();
+
+            String sql1 = "SELECT contador_avaliacao FROM cliente WHERE login = ?";        
+            String sql2 = "UPDATE cliente SET avaliacao = ?, contador_avaliacao = ? WHERE login = ?";
+
+            try{     
+                pst1 = con.prepareStatement(sql1);
+                pst1.setString(1, cliente.getLogin());
+                result1 = pst1.executeQuery();
+
+                if(result1.next()){
+                    cliente.setContadorAvaliacao(result1.getInt("contador_avaliacao")+1);
+                }
+
+                cliente.setAvaliacao(avaliacao);
+
+                pst2 = con.prepareStatement(sql2);
+                pst2.setFloat(1, Float.valueOf(String.valueOf(cliente.getAvaliacao())));
+                pst2.setInt(2, cliente.getContadorAvaliacao());
+                pst2.setString(3, cliente.getLogin());   
+
+                pst2.executeUpdate();
+
+            }
+            catch(SQLException e){
+                return;            
+            }        
+        }
                    
 }

@@ -113,12 +113,12 @@ public class ShoppingDoneView extends javax.swing.JFrame {
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
             
         try {
-            finalizarCompra(cbAvaliacao.getSelectedIndex());
+            finalizarCompra(cbAvaliacao.getSelectedIndex()+1);
             new HomeView((cliente)).setVisible(true);
+            this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ShoppingDoneView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**

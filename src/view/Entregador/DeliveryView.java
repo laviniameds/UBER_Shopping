@@ -206,7 +206,7 @@ public class DeliveryView extends javax.swing.JFrame {
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
         try {
             controller.atualizarEntrega();
-            new DeliveryDoneView().setVisible(true);
+            new DeliveryDoneView(cliente, entregador).setVisible(true);
             this.setVisible(false);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DeliveryView.class.getName()).log(Level.SEVERE, null, ex);

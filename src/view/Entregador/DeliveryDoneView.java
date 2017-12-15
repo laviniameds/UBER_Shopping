@@ -5,17 +5,31 @@
  */
 package view.Entregador;
 
+import controller.ControllerEntregador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Cliente;
+import model.Entregador;
+
 /**
  *
  * @author lavinia
  */
 public class DeliveryDoneView extends javax.swing.JFrame {
+    
+    private static Cliente cliente = null;
+    private static Entregador entregador = null;
+    private static ControllerEntregador controller = null;
 
     /**
      * Creates new form DeliveryDoneView
      */
-    public DeliveryDoneView() {
+    public DeliveryDoneView(Cliente cliente, Entregador entregador){
         initComponents();
+        
+        this.cliente = cliente;
+        this.entregador = entregador;
+        this.controller = new ControllerEntregador();
     }
 
     /**
@@ -91,7 +105,13 @@ public class DeliveryDoneView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        
+        try {
+            controller.atualizarClienteBD(cliente, cbAvaliacao.getSelectedIndex()+1);
+            new HomeView(entregador).setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeliveryDoneView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
@@ -124,7 +144,7 @@ public class DeliveryDoneView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryDoneView().setVisible(true);
+                //new DeliveryDoneView().setVisible(true);
             }
         });
     }
