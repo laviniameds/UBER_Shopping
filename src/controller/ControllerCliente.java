@@ -154,8 +154,7 @@ public class ControllerCliente {
             pst2.setString(3, entregador.getLogin());   
 
             pst2.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Entregador sucesso!");                  
+                           
         }
         catch(SQLException e){
             return;            

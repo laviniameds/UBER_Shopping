@@ -24,6 +24,7 @@ public class ControllerEntregador {
         private static Cliente cliente = null;
         private static Compra compra = null;
         private static TableModel modeloTabela = null;
+        private static Integer id_compra;
         
         /**
         * @return the cliente
@@ -119,6 +120,7 @@ public class ControllerEntregador {
                     
                     setCliente(result.getString("login_cliente"));
                     listarProdutos(result.getInt("id_compra"));
+                    id_compra = result.getInt("id_compra");
                 }
                 else
                     return;
@@ -167,6 +169,25 @@ public class ControllerEntregador {
                 }
                 else
                     return;
+            }
+            catch(SQLException e){
+                return;            
+            }   
+        }
+        
+        public static void atualizarEntrega() throws ClassNotFoundException{
+            PreparedStatement pst = null;
+            Connection con = ConectionBD.conectBD();
+            
+            String sql = "UPDATE compra SET pendente = 'false' WHERE id_compra = ?";
+
+            try{     
+                pst = con.prepareStatement(sql);
+
+                pst.setInt(1, id_compra);   
+
+                pst.executeUpdate();
+
             }
             catch(SQLException e){
                 return;            

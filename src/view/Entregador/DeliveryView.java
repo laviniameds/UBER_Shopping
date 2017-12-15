@@ -7,6 +7,8 @@ package view.Entregador;
 
 import controller.ControllerCliente;
 import controller.ControllerEntregador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Cliente;
 import model.Compra;
 import model.Entregador;
@@ -26,14 +28,25 @@ public class DeliveryView extends javax.swing.JFrame {
     private static Compra compra;
     private static ControllerEntregador controller;
     
-    public DeliveryView(Entregador entregador) {
+    public DeliveryView(Entregador entregador) throws ClassNotFoundException {
         initComponents();
         
         this.entregador = entregador;
+        this.controller = new ControllerEntregador();
+        
+        this.controller.generateRamdomCompra(entregador);
+        this.cliente = this.controller.getCliente();
+        this.compra = this.controller.getCompra();
+        tbProdutos.setModel(this.controller.getModeloTabela());
+        
+        setEntregaLabels();
     }
     
     public void setEntregaLabels(){
-        
+        lblNome.setText(cliente.getNome());
+        lblAvaliacao.setText(String.valueOf(cliente.getAvaliacao()));
+        lblLocal.setText(compra.getLocal());
+        lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));               
     }
 
     /**
@@ -47,7 +60,7 @@ public class DeliveryView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbProdutos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -63,7 +76,7 @@ public class DeliveryView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbProdutos);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,11 +204,22 @@ public class DeliveryView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-
+        try {
+            controller.atualizarEntrega();
+            new DeliveryDoneView().setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeliveryView.class.getName()).log(Level.SEVERE, null, ex);
+        }              
     }//GEN-LAST:event_btnEntregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        try {
+            new HomeView(entregador).setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DeliveryView.class.getName()).log(Level.SEVERE, null, ex);
+        }       
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -244,10 +268,10 @@ public class DeliveryView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAvaliacao;
     private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JTable tbProdutos;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,8 @@ package view.Entregador;
 
 import controller.ControllerEntregador;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Entregador;
 
 /**
@@ -145,8 +147,12 @@ public class HomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFazerEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFazerEntregaActionPerformed
-        new DeliveryView(entregador).setVisible(true);
-        this.setVisible(false);
+        try {
+            new DeliveryView(entregador).setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnFazerEntregaActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
