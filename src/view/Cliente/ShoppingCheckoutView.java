@@ -145,7 +145,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Voltar");
+        btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);

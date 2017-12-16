@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ import model.*;
  * @author lavinia
  */
 public class ControllerCliente {
-    
+       
     public static TableModel listarHistoricoCompras(String login) throws ClassNotFoundException{
         PreparedStatement pst = null;
         ResultSet result = null;
@@ -166,7 +167,7 @@ public class ControllerCliente {
         PreparedStatement pst = null;
         Connection con = ConectionBD.conectBD();
         
-        String sql = "INSERT INTO compra(login_cliente, login_entregador, valor, local, data) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO compra(login_cliente, login_entregador, valor, local, data) values (?, ?, ?, ?, ?) RETURNING id_compra;";
         
         try{           
             pst = con.prepareStatement(sql);
@@ -176,12 +177,39 @@ public class ControllerCliente {
             pst.setString(4, compra.getLocal());   
             pst.setDate(5, new java.sql.Date(System.currentTimeMillis()));  
             
-            pst.execute();      
-            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
+            pst.execute();
+            
+            ResultSet last_updated_compra = pst.getResultSet();
+            int id_compra = last_updated_compra.getInt(1);
+            IserirProdutosBD(compra.getCesta(), id_compra);
             
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);         
         }        
     }
+    
+    public static void IserirProdutosBD(ArrayList<Produto> arrayProdutos, Integer id_compra) throws ClassNotFoundException{
+        PreparedStatement pst = null;
+        Connection con = ConectionBD.conectBD();
+        
+        String sql = "INSERT INTO produto(id_compra, preco, quantidade, descricao) values (?, ?, ?, ?)";
+        
+        try{
+            pst = con.prepareStatement(sql);
+            for(Produto produto : arrayProdutos){
+                pst.setInt(1, id_compra);
+                pst.setFloat(2, produto.getPreco());   
+                pst.setInt(3, produto.getQuantidade());   
+                pst.setString(4, produto.getNome());   
+
+                pst.execute();
+            }      
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);         
+        }        
+    }
+    
 }
