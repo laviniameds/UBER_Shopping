@@ -28,7 +28,7 @@ public class HomeView extends javax.swing.JFrame {
         this.controller = new ControllerCliente();
         
         lblNome.setText(cliente.getNome());
-        lblAvaliacao.setText(String.valueOf(cliente.getAvaliacao()));
+        lblAvaliacao.setText(String.format("%.1f",(cliente.getAvaliacao())));
         populatTabelaCompras();
     }
 

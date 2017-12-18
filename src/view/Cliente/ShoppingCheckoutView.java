@@ -44,7 +44,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     
     private void setEntregadorLabels(){
         lblNomeEntregador.setText(entregador.getNome());
-        lblAvEntregador.setText(String.valueOf(entregador.getAvaliacao()));
+        lblAvEntregador.setText(String.format("%.1f",(entregador.getAvaliacao())));
         lblTempoEntregador.setText(String.valueOf(entregador.getTempo_servico()));
         lblDistEntregador.setText(compra.getLocalizacao().getDistancia());
     }
@@ -284,7 +284,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
             lblDistanciaLocal.setText(controller.escolherLocalCompra(compra, txtLocalizacao.getText()));
             this.compra.setComissaoEntregador();
             this.compra.setValorTotalCompra(); 
-            lblTaxaServico.setText(String.valueOf(compra.getComissaoEntregador()));
+            lblTaxaServico.setText(String.format("%.1f",(compra.getComissaoEntregador())));
             lblTotal.setText(String.valueOf(compra.getValorTotalCompra()));
             btnLocalizar.setEnabled(false);
         }
