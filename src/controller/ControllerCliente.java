@@ -178,11 +178,13 @@ public class ControllerCliente {
             pst.setDate(5, new java.sql.Date(System.currentTimeMillis()));  
             
             pst.execute();
-            
+                        
             ResultSet last_updated_compra = pst.getResultSet();
-            int id_compra = last_updated_compra.getInt(1);
-            IserirProdutosBD(compra.getCesta(), id_compra);
             
+            if(last_updated_compra.next()){
+                int id_compra = last_updated_compra.getInt(1);
+                IserirProdutosBD(compra.getCesta(), id_compra);
+            }            
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);         
