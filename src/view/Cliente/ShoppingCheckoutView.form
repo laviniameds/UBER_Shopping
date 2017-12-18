@@ -248,19 +248,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblValorCompra">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;valor&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTaxaServico">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;taxa&gt;"/>
+        <Property name="text" type="java.lang.String" value="0,00"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTotal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;total&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator4">
     </Component>

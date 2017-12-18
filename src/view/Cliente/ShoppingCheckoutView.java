@@ -38,8 +38,6 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     private void setEntregador() throws ClassNotFoundException{
         this.entregador = controller.buscarEntregadorRandomico();
         this.compra.setTempo(entregador);
-        this.compra.setComissaoEntregador();
-        this.compra.setValorTotalCompra(); 
     }
     
     private void setEntregadorLabels(){
@@ -50,9 +48,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }
     
     private void setCompraCheckoutLabels(){
-        lblValorCompra.setText(String.valueOf(compra.getValorTotalProdutos()));
-        lblTaxaServico.setText(String.valueOf(compra.getComissaoEntregador()));
-        lblTotal.setText(String.valueOf(compra.getValorTotalCompra()));
+        lblValorCompra.setText(String.valueOf(compra.getValorTotalProdutos()));       
     }
 
     /**
@@ -132,11 +128,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
 
         jLabel13.setText("Total: R$");
 
-        lblValorCompra.setText("<valor>");
-
-        lblTaxaServico.setText("<taxa>");
-
-        lblTotal.setText("<total>");
+        lblTaxaServico.setText("0,00");
 
         btnFinalizarCompra.setText("Finalizar Compra");
         btnFinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -279,6 +271,10 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
         lblDistanciaLocal.setText(controller.escolherLocalCompra(compra, txtLocalizacao.getText()));
+        this.compra.setComissaoEntregador();
+        this.compra.setValorTotalCompra(); 
+        lblTaxaServico.setText(String.valueOf(compra.getComissaoEntregador()));
+        lblTotal.setText(String.valueOf(compra.getValorTotalCompra()));
         btnLocalizar.setEnabled(false);
     }//GEN-LAST:event_btnLocalizarActionPerformed
 

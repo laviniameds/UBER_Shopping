@@ -8,6 +8,7 @@ public class Compra {
 	private double valorTotalProdutos;
 	private double valorTotalCompra;
 	private double tempo;
+        private double tempoComissao;
         private Date data;
 	private String local;
 	private ArrayList<Produto> produtos;
@@ -40,8 +41,10 @@ public class Compra {
 	}
 	
 	public void setComissaoEntregador(){
-		this.comissaoEntregador = ((this.getTempo() + this.getValorTotalProdutos() 
+		this.comissaoEntregador = ((this.getTempoComissao() + this.getValorTotalProdutos() 
 				+ this.qtdProdutosCesta())*15)/100;
+                if (this.comissaoEntregador < 7)
+                    this.comissaoEntregador = 7;
 	}
 	
 	public double getComissaoEntregador(){
@@ -78,10 +81,16 @@ public class Compra {
 	public double getTempo() {
 		return tempo;
 	}
+        
+        public double getTempoComissao() {
+            return tempoComissao;
+        }
 
 	public void setTempo(Entregador entregador) {
+                int aux = (int)(this.getLocalizacao().getDistanciaDefinida()/100);
 		this.tempo = 20 + (int)(entregador.getLocalizacao().getDistanciaDefinida()/100) 
-				+ (int)(this.getLocalizacao().getDistanciaDefinida()/100);
+				+ aux;
+                this.tempoComissao = 20 + aux;
 	}
 
 	public String getLocal() {
