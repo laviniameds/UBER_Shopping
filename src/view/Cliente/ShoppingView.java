@@ -142,7 +142,19 @@ public class ShoppingView extends javax.swing.JFrame {
 
         jLabel6.setText("Preço:");
 
+        txtPreco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecoKeyTyped(evt);
+            }
+        });
+
         jLabel7.setText("Quantidade:");
+
+        txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQuantidadeKeyTyped(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +299,26 @@ public class ShoppingView extends javax.swing.JFrame {
             Logger.getLogger(ShoppingView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtPrecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecoKeyTyped
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9') ||
+           (c == evt.VK_BACK_SPACE) ||
+           (c == evt.VK_DELETE) || (c == evt.VK_PERIOD))) {
+          getToolkit().beep();
+          evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecoKeyTyped
+
+    private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9') ||
+           (c == evt.VK_BACK_SPACE) ||
+           (c == evt.VK_DELETE)|| (c == evt.VK_PERIOD))) {
+          getToolkit().beep();
+          evt.consume();
+        }
+    }//GEN-LAST:event_txtQuantidadeKeyTyped
 
     /**
      * @param args the command line arguments
