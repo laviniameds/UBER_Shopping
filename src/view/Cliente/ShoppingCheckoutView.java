@@ -9,6 +9,8 @@ import model.*;
 import controller.ControllerCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -265,17 +267,27 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
-        new ShoppingDoneView(cliente, compra, entregador).setVisible(true);
-        this.setVisible(false);
+        if(txtLocalizacao.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o destino da compra!");  
+        }
+        else{
+            new ShoppingDoneView(cliente, compra, entregador).setVisible(true);
+            this.setVisible(false); 
+        }
     }//GEN-LAST:event_btnFinalizarCompraActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        lblDistanciaLocal.setText(controller.escolherLocalCompra(compra, txtLocalizacao.getText()));
-        this.compra.setComissaoEntregador();
-        this.compra.setValorTotalCompra(); 
-        lblTaxaServico.setText(String.valueOf(compra.getComissaoEntregador()));
-        lblTotal.setText(String.valueOf(compra.getValorTotalCompra()));
-        btnLocalizar.setEnabled(false);
+        if(txtLocalizacao.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o destino da compra!");  
+        }
+        else{
+            lblDistanciaLocal.setText(controller.escolherLocalCompra(compra, txtLocalizacao.getText()));
+            this.compra.setComissaoEntregador();
+            this.compra.setValorTotalCompra(); 
+            lblTaxaServico.setText(String.valueOf(compra.getComissaoEntregador()));
+            lblTotal.setText(String.valueOf(compra.getValorTotalCompra()));
+            btnLocalizar.setEnabled(false);
+        }
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnBuscarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadorActionPerformed

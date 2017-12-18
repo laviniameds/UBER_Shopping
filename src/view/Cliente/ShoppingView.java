@@ -8,6 +8,7 @@ package view.Cliente;
 import controller.ControllerCliente;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Compra;
 import model.Produto;
 import model.Usuario;
@@ -285,11 +286,16 @@ public class ShoppingView extends javax.swing.JFrame {
 
     private void btnFinalizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarListaActionPerformed
         try {
+        if(this.compra.qtdProdutosCesta() == 0){
+            JOptionPane.showMessageDialog(null, "Insira algum produto");
+        }
+        else{
             new ShoppingCheckoutView(cliente, compra).setVisible(true);
+            this.setVisible(false);           
+        }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ShoppingView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_btnFinalizarListaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
