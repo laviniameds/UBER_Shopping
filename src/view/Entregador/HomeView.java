@@ -30,7 +30,7 @@ public class HomeView extends javax.swing.JFrame {
         this.controller = new ControllerEntregador();
         
         lblNome.setText(entregador.getNome());
-        lblAvaliacao.setText(String.valueOf(entregador.getAvaliacao()));
+        lblAvaliacao.setText(String.format("%.1f",(entregador.getAvaliacao())));
         populatTabelaCompras();
     }
 
@@ -160,7 +160,9 @@ public class HomeView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void populatTabelaCompras() throws ClassNotFoundException{
-        tbCompras.setModel(controller.listarEntregasPendentes(entregador.getLogin()));     
+        tbCompras.setModel(controller.listarEntregasPendentes(entregador.getLogin()));
+        tbCompras.setRowSelectionAllowed(false);
+        tbCompras.setColumnSelectionAllowed(false);
     }
     
     /**

@@ -37,14 +37,17 @@ public class DeliveryView extends javax.swing.JFrame {
         this.controller.generateRamdomCompra(entregador);
         this.cliente = this.controller.getCliente();
         this.compra = this.controller.getCompra();
+        
         tbProdutos.setModel(this.controller.getModeloTabela());
+        tbProdutos.setRowSelectionAllowed(false);
+        tbProdutos.setColumnSelectionAllowed(false);
         
         setEntregaLabels();
     }
     
     public void setEntregaLabels(){
         lblNome.setText(cliente.getNome());
-        lblAvaliacao.setText(String.valueOf(cliente.getAvaliacao()));
+        lblAvaliacao.setText(String.format("%.1f",(cliente.getAvaliacao())));
         lblLocal.setText(compra.getLocal());
         lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));               
     }
