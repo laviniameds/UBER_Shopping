@@ -64,7 +64,7 @@ public class ShoppingView extends javax.swing.JFrame {
         int modelIndex = tbListaProd.convertRowIndexToModel(row);
         model.removeRow(modelIndex);
         
-        this.compra = controller.remProdutoCompra(compra, modelIndex);
+        this.compra = controller.remProdutoCompra(compra, modelIndex);     
     }
 
     /**
@@ -280,6 +280,7 @@ public class ShoppingView extends javax.swing.JFrame {
 
     private void btnRemoverProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdActionPerformed
         remoProdutoTabela(tbListaProd.getSelectedRow());
+        lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));   
     }//GEN-LAST:event_btnRemoverProdActionPerformed
 
     private void btnFinalizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarListaActionPerformed
