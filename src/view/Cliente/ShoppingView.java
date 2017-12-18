@@ -44,7 +44,12 @@ public class ShoppingView extends javax.swing.JFrame {
     }
     
     private void setDadosTabela(){
-        //preenche a tabela com o array de produtos da compra;
+        for(Produto p : compra.getCesta()){
+            DefaultTableModel model = (DefaultTableModel) tbListaProd.getModel();
+            Object[] objProduto = {p.getNome(), p.getQuantidade(), p.getPreco()};
+            model.addRow(objProduto);
+        }
+        lblTotal.setText(String.valueOf(compra.getValorTotalProdutos()));
     }
     
     private void limparCampos(){

@@ -86,7 +86,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
         lblTotal = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         btnFinalizarCompra = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,10 +139,10 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -159,7 +159,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCancelar)
+                                .addComponent(btnVoltar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnFinalizarCompra))
                             .addComponent(lblDistanciaLocal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -254,17 +254,17 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFinalizarCompra)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnVoltar))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         new ShoppingView(cliente, compra).setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
         if(txtLocalizacao.getText().equals("")){
@@ -341,9 +341,9 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarEntregador;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnFinalizarCompra;
     private javax.swing.JButton btnLocalizar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
