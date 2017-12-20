@@ -212,7 +212,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tempo de servi&#xe7;o:"/>
+        <Property name="text" type="java.lang.String" value="Tempo de espera:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTempoEntregador">

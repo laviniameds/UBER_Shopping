@@ -7,7 +7,7 @@ public class Compra {
 	
 	private double valorTotalProdutos;
 	private double valorTotalCompra;
-	private double tempo;
+	private int tempo;
         private double tempoComissao;
         private Date data;
 	private String local;
@@ -78,7 +78,7 @@ public class Compra {
 		return this.valorTotalCompra;
 	}
 
-	public double getTempo() {
+	public int getTempo() {
 		return tempo;
 	}
         

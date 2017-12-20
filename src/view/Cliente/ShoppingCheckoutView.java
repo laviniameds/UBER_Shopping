@@ -45,7 +45,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
     private void setEntregadorLabels(){
         lblNomeEntregador.setText(entregador.getNome());
         lblAvEntregador.setText(String.format("%.1f",(entregador.getAvaliacao())));
-        lblTempoEntregador.setText(String.valueOf(entregador.getTempo_servico()));
+        lblTempoEntregador.setText(String.valueOf(compra.getTempo()) + " minutos");
         lblDistEntregador.setText(compra.getLocalizacao().getDistancia());
     }
     
@@ -116,7 +116,7 @@ public class ShoppingCheckoutView extends javax.swing.JFrame {
 
         lblAvEntregador.setText("<avaliacao>");
 
-        jLabel7.setText("Tempo de serviço:");
+        jLabel7.setText("Tempo de espera:");
 
         lblTempoEntregador.setText("<tempo>");
 
