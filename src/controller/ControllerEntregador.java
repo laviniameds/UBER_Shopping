@@ -10,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.TableModel;
-import model.Cliente;
-import model.Compra;
-import model.Entregador;
+import model.*;
 import net.proteanit.sql.DbUtils;
 
 /**

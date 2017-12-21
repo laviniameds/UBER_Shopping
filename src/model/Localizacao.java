@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Localizacao{
 	
-    private Random r = new Random();
+    private Random random = new Random();
     private double distancia;
 	
     private double gerarDistancia(){
-        return 100 * Math.round(1 + r.nextDouble() * 50);
+        return 100 * Math.round(1 + random.nextDouble() * 50);
     }
     
     public String getDistancia(){
